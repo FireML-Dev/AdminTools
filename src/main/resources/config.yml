@@ -1,0 +1,7 @@
+resourceadmin:
+  pre-generate: false
+jobs:
+  place-break:
+    enable-patch: false
+    world-bypass:
+      - Mapart

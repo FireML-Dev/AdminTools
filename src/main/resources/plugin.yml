@@ -1,0 +1,30 @@
+name: AdminTools
+version: '${project.version} ${buildDescription}'
+main: uk.firedev.admintools.AdminTools
+api-version: '1.20'
+depend:
+  - DaisyLib
+softdepend:
+  - EvenMoreFish
+  - CMI
+  - Multiverse-Core
+  - EcoItems
+  - EcoArmor
+  - Denizen
+  - eco
+  - mcMMO
+  - VotingPlugin
+author: FireML
+description: ${project.description}
+folia-supported: true
+
+commands:
+  admintools:
+    description: "Handles the AdminTools Plugin"
+    permission: "admintools.command"
+  resourceadmin:
+    description: "Manages the Resource Worlds"
+    permission: "admintools.resourceadmin"
+  disableplugin:
+    description: "Disables plugins if they're being annoying"
+    permission: "admintools.disableplugin"
