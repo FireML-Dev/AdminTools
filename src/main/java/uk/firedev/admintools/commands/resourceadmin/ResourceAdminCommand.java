@@ -120,7 +120,7 @@ public class ResourceAdminCommand implements CommandExecutor, TabCompleter {
             Loggers.log(Level.INFO, AdminTools.getInstance().getLogger(), MessageUtils.getInstance().fromConfig("messages.resourceadmin.setup.setdifficulty",
                     "world", w.getName())
             );
-            if (ConfigManager.RESOURCE_PRE_GENERATE) {
+            if (ConfigManager.getInstance().isResourcePreGenerate()) {
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "chunky world " + worldname);
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "chunky worldborder");
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "chunky start");

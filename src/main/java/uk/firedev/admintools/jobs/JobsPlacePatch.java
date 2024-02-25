@@ -17,7 +17,7 @@ import java.util.List;
 public class JobsPlacePatch implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onMoneyPayment(JobsPrePaymentEvent e) {
-        if (!ConfigManager.PLACE_BREAK_ENABLED) {
+        if (!ConfigManager.getInstance().isPlaceBreakEnabled()) {
             return;
         }
         if (e.getActionInfo() == null) {
@@ -41,7 +41,7 @@ public class JobsPlacePatch implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEXPPayment(JobsExpGainEvent e) {
-        if (!ConfigManager.PLACE_BREAK_ENABLED) {
+        if (!ConfigManager.getInstance().isPlaceBreakEnabled()) {
             return;
         }
         if (e.getActionInfo() == null) {
@@ -64,7 +64,7 @@ public class JobsPlacePatch implements Listener {
     }
 
     private boolean bypass(World world) {
-        List<String> bypassWorlds = ConfigManager.PLACE_BREAK_BYPASS_WORLDS;
+        List<String> bypassWorlds = ConfigManager.getInstance().getPlaceBreakBypassWorlds();
         return !bypassWorlds.isEmpty() && bypassWorlds.contains(world.getName());
     }
 

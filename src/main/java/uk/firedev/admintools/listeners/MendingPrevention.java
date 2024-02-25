@@ -8,6 +8,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerItemMendEvent;
 import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.ItemStack;
+import uk.firedev.admintools.config.ConfigManager;
 import uk.firedev.daisylib.utils.ItemUtils;
 import uk.firedev.admintools.MessageUtils;
 
@@ -15,6 +16,9 @@ public class MendingPrevention implements Listener {
 
     @EventHandler
     public void onMendingApply(InventoryClickEvent e) {
+        if (!ConfigManager.getInstance().preventCustomItemMending()) {
+            return;
+        }
         if (!(e.getInventory() instanceof AnvilInventory inv)) {
             return;
         }
@@ -31,6 +35,9 @@ public class MendingPrevention implements Listener {
 
     @EventHandler
     public void onMend(PlayerItemMendEvent e) {
+        if (!ConfigManager.getInstance().preventCustomItemMending()) {
+            return;
+        }
         if (ItemUtils.isCustomItem(e.getItem())) {
             e.setCancelled(true);
         }

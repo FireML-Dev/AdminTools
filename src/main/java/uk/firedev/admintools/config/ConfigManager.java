@@ -10,12 +10,11 @@ public class ConfigManager extends Config {
 
     private static ConfigManager instance = null;
 
-    // Jobs Place/Break Patch
-    public static boolean PLACE_BREAK_ENABLED = false;
-    public static List<String> PLACE_BREAK_BYPASS_WORLDS = new ArrayList<>();
-
-    // ResourceAdmin Command
-    public static boolean RESOURCE_PRE_GENERATE = false;
+    public boolean isPlaceBreakEnabled() { return getConfig().getBoolean("jobs.place-break.enable-patch", false); }
+    public List<String> getPlaceBreakBypassWorlds() { return getConfig().getStringList("jobs.place-break.world-bypass"); }
+    public boolean isResourcePreGenerate() { return getConfig().getBoolean("resourceadmin.pre-generate", false); }
+    public boolean preventCustomItemMending() { return getConfig().getBoolean("custom-items.prevent-mending", false); }
+    public boolean preventCustomItemFurnaceFuel() { return getConfig().getBoolean("custom-items.prevent-furnace-fuel", true); }
 
     public ConfigManager(String fileName, JavaPlugin plugin) {
         super(fileName, plugin);
@@ -24,14 +23,6 @@ public class ConfigManager extends Config {
 
     public static ConfigManager getInstance() {
         return instance;
-    }
-
-    @Override
-    public void reload() {
-        super.reload();
-        PLACE_BREAK_ENABLED = getConfig().getBoolean("jobs.place-break.enable-patch", false);
-        RESOURCE_PRE_GENERATE = getConfig().getBoolean("resourceadmin.pre-generate", false);
-        PLACE_BREAK_BYPASS_WORLDS = getConfig().getStringList("jobs.place-break.world-bypass");
     }
 
 }
