@@ -85,7 +85,6 @@ public class ResourceAdminCommand implements CommandExecutor, TabCompleter {
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spawn " + p.getName());
                 }
             });
-            Bukkit.dispatchCommand(sender, "adminwarps purge " + worldname);
             if (Bukkit.getPluginManager().isPluginEnabled("CMI")) {
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "cmi resetdbfields Homes -w:" + worldname);
             }
