@@ -26,7 +26,7 @@ public class DisablePluginCommand implements CommandExecutor, TabCompleter {
         Plugin pl = pm.getPlugin(args[0]);
         if (pm.isPluginEnabled(pl)) {
             pm.disablePlugin(pl);
-            MessageUtils.getInstance().sendMessage(sender, "&cDisabled " + pl.getName());
+            MessageUtils.getInstance().sendMessage(sender, "<red>Disabled " + pl.getName() + "</red>");
             return true;
         }
         return false;
