@@ -8,11 +8,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import uk.firedev.admintools.MessageUtils;
+import uk.firedev.admintools.config.ConfigManager;
 
 public class PreventMap implements Listener {
 
     @EventHandler
     public void onMapCreated(PlayerInteractEvent e) {
+        if (!ConfigManager.getInstance().preventMapsInNonOwnerPlots()) {
+            return;
+        }
         PlotAPI plotAPI = new PlotAPI();
         Plot plot = plotAPI.wrapPlayer(e.getPlayer().getUniqueId()).getCurrentPlot();
 
