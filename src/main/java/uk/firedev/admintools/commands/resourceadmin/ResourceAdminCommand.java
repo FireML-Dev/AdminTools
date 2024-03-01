@@ -67,9 +67,7 @@ public class ResourceAdminCommand implements CommandExecutor, TabCompleter {
         this.deleteWorld("Resource", sender);
         this.deleteWorld("Resource_nether", sender);
         this.deleteWorld("Resource_the_end", sender);
-        if (Bukkit.getPluginManager().isPluginEnabled("CMI")) {
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "cmi reload");
-        }
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "cmi reload");
         MessageUtils.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.delete.complete");
     }
 
@@ -82,12 +80,11 @@ public class ResourceAdminCommand implements CommandExecutor, TabCompleter {
                 if (p.getRespawnLocation() != null) {
                     p.teleport(p.getRespawnLocation());
                 } else {
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spawn " + p.getName());
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "cmi spawn " + p.getName());
                 }
             });
-            if (Bukkit.getPluginManager().isPluginEnabled("CMI")) {
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "cmi resetdbfields Homes -w:" + worldname);
-            }
+            Bukkit.dispatchCommand(sender, "adminwarps purge " + worldname);
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "cmi resetdbfields Homes -w:" + worldname);
             worldManager.deleteWorld(worldname);
             MessageUtils.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.delete.worldsuccess",
                     "world", w.getName()
@@ -103,9 +100,7 @@ public class ResourceAdminCommand implements CommandExecutor, TabCompleter {
         this.createWorld("Resource", sender, World.Environment.NORMAL);
         this.createWorld("Resource_nether", sender, World.Environment.NETHER);
         this.createWorld("Resource_the_end", sender, World.Environment.THE_END);
-        if (Bukkit.getPluginManager().isPluginEnabled("CMI")) {
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "cmi reload");
-        }
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "cmi reload");
     }
 
     private void createWorld(String worldname, CommandSender sender, World.Environment env) {
