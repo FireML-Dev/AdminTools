@@ -10,7 +10,7 @@ import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import uk.firedev.admintools.AdminTools;
-import uk.firedev.admintools.MessageUtils;
+import uk.firedev.admintools.config.MessageConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class DisablePluginCommand implements CommandExecutor, TabCompleter {
         Plugin pl = pm.getPlugin(args[0]);
         if (pm.isPluginEnabled(pl)) {
             pm.disablePlugin(pl);
-            MessageUtils.getInstance().sendMessage(sender, "<red>Disabled " + pl.getName() + "</red>");
+            MessageConfig.getInstance().sendMessage(sender, "<red>Disabled " + pl.getName() + "</red>");
             return true;
         }
         return false;

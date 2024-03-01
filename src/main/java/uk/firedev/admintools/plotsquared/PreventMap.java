@@ -7,14 +7,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
-import uk.firedev.admintools.MessageUtils;
-import uk.firedev.admintools.config.ConfigManager;
+import uk.firedev.admintools.config.MainConfig;
+import uk.firedev.admintools.config.MessageConfig;
 
 public class PreventMap implements Listener {
 
     @EventHandler
     public void onMapCreated(PlayerInteractEvent e) {
-        if (!ConfigManager.getInstance().preventMapsInNonOwnerPlots()) {
+        if (!MainConfig.getInstance().preventMapsInNonOwnerPlots()) {
             return;
         }
         PlotAPI plotAPI = new PlotAPI();
@@ -22,7 +22,7 @@ public class PreventMap implements Listener {
 
         if (plot != null && e.getItem() != null && e.getItem().getType() == Material.MAP && !validMember(plot, e.getPlayer())) {
             e.setCancelled(true);
-            MessageUtils.getInstance().sendMessage(e.getPlayer(), MessageUtils.getInstance().fromConfig("messages.mapartprotection.denymessage"));
+            MessageConfig.getInstance().sendMessage(e.getPlayer(), MessageConfig.getInstance().fromConfig("messages.mapartprotection.denymessage"));
         }
     }
 

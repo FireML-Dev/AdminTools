@@ -8,7 +8,7 @@ import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import uk.firedev.admintools.AdminTools;
-import uk.firedev.admintools.MessageUtils;
+import uk.firedev.admintools.config.MessageConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class AdminToolsCommand implements CommandExecutor, TabCompleter {
         }
         if (args[0].equals("reload")) {
             AdminTools.getInstance().reload();
-            MessageUtils.getInstance().sendPrefixedMessageFromConfig(sender, "messages.reloaded");
+            MessageConfig.getInstance().sendPrefixedMessageFromConfig(sender, "messages.reloaded");
             return true;
         }
         return false;

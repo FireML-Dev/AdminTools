@@ -1,14 +1,12 @@
 package uk.firedev.admintools.config;
 
-import org.bukkit.plugin.java.JavaPlugin;
-import uk.firedev.daisylib.Config;
+import uk.firedev.admintools.AdminTools;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ConfigManager extends Config {
+public class MainConfig extends uk.firedev.daisylib.Config {
 
-    private static ConfigManager instance = null;
+    private static MainConfig instance = null;
 
     public boolean isPlaceBreakEnabled() { return getConfig().getBoolean("hooks.jobs.place-break.enable-patch", false); }
     public List<String> getPlaceBreakBypassWorlds() { return getConfig().getStringList("hooks.jobs.place-break.world-bypass"); }
@@ -17,12 +15,15 @@ public class ConfigManager extends Config {
     public boolean preventCustomItemFurnaceFuel() { return getConfig().getBoolean("hooks.custom-items.prevent-furnace-fuel", true); }
     public boolean preventMapsInNonOwnerPlots() { return getConfig().getBoolean("hooks.plotsquared.prevent-maps-for-non-owners", true); }
 
-    public ConfigManager(String fileName, JavaPlugin plugin) {
-        super(fileName, plugin);
+    private MainConfig() {
+        super("config.yml", AdminTools.getInstance());
         instance = this;
     }
 
-    public static ConfigManager getInstance() {
+    public static MainConfig getInstance() {
+        if (instance == null) {
+            instance = new MainConfig();
+        }
         return instance;
     }
 

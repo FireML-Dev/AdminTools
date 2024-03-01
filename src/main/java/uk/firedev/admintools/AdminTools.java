@@ -13,8 +13,8 @@ import uk.firedev.admintools.commands.DisablePluginCommand;
 import uk.firedev.admintools.commands.AdminToolsCommand;
 import uk.firedev.admintools.commands.resourceadmin.ResourceAdminCommand;
 import uk.firedev.admintools.commands.resourceadmin.ResourceAdminListener;
-import uk.firedev.admintools.config.ConfigManager;
-import uk.firedev.admintools.config.MessageManager;
+import uk.firedev.admintools.config.MainConfig;
+import uk.firedev.admintools.config.MessageConfig;
 import uk.firedev.admintools.denizen.DenizenIntegration;
 import uk.firedev.admintools.jobs.JobsPlacePatch;
 import uk.firedev.admintools.listeners.BowProtection;
@@ -75,21 +75,8 @@ public class AdminTools extends JavaPlugin implements Listener {
 
     public void reload() {
         this.reloadConfig();
-        if (ConfigManager.getInstance() == null) {
-            new ConfigManager("config.yml", this);
-        } else {
-            ConfigManager.getInstance().reload();
-        }
-        if (MessageManager.getInstance() == null) {
-            new MessageManager("messages.yml", this);
-        } else {
-            MessageManager.getInstance().reload();
-        }
-        if (MessageUtils.getInstance() == null) {
-            new MessageUtils(MessageManager.getInstance().getConfig());
-        } else {
-            MessageUtils.getInstance().reload(MessageManager.getInstance().getConfig());
-        }
+        MainConfig.getInstance().reload();
+        MessageConfig.getInstance().reload();
     }
 
     private void loadCommands() {

@@ -12,10 +12,10 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
+import uk.firedev.admintools.config.MessageConfig;
 import uk.firedev.daisylib.Loggers;
 import uk.firedev.admintools.AdminTools;
-import uk.firedev.admintools.MessageUtils;
-import uk.firedev.admintools.config.ConfigManager;
+import uk.firedev.admintools.config.MainConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +29,8 @@ public class ResourceAdminCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         if (args.length == 0) {
-            MessageUtils.getInstance().fromConfigList("messages.resourceadmin.usage").forEach(
-                    s -> MessageUtils.getInstance().sendPrefixedMessage(sender, s)
+            MessageConfig.getInstance().fromConfigList("messages.resourceadmin.usage").forEach(
+                    s -> MessageConfig.getInstance().sendPrefixedMessage(sender, s)
             );
             return true;
         }
@@ -44,7 +44,7 @@ public class ResourceAdminCommand implements CommandExecutor, TabCompleter {
                         this.deleteWorlds(sender);
                     } else {
                         addToDeleteConfirmList(uuid);
-                        MessageUtils.getInstance().sendPrefixedMessageFromConfig(p, "messages.resourceadmin.delete.confirm");
+                        MessageConfig.getInstance().sendPrefixedMessageFromConfig(p, "messages.resourceadmin.delete.confirm");
                     }
                 } else {
                     this.deleteWorlds(sender);
@@ -53,7 +53,7 @@ public class ResourceAdminCommand implements CommandExecutor, TabCompleter {
             }
             case "setup" -> {
                 this.createWorlds(sender);
-                MessageUtils.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.setup.complete");
+                MessageConfig.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.setup.complete");
                 return true;
             }
         }
@@ -62,13 +62,13 @@ public class ResourceAdminCommand implements CommandExecutor, TabCompleter {
 
     private void deleteWorlds(CommandSender sender) {
         // Notify the sender
-        MessageUtils.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.delete.starting");
+        MessageConfig.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.delete.starting");
         // Delete the Worlds
         this.deleteWorld("Resource", sender);
         this.deleteWorld("Resource_nether", sender);
         this.deleteWorld("Resource_the_end", sender);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "cmi reload");
-        MessageUtils.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.delete.complete");
+        MessageConfig.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.delete.complete");
     }
 
     private void deleteWorld(String worldname, CommandSender sender) {
@@ -76,7 +76,7 @@ public class ResourceAdminCommand implements CommandExecutor, TabCompleter {
         if (w != null) {
             if (w.getEnderDragonBattle() != null) { w.getEnderDragonBattle().getBossBar().removeAll(); }
             w.getPlayers().forEach(p -> {
-                MessageUtils.getInstance().sendPrefixedMessageFromConfig(p, "messages.resourceadmin.delete.evacmessage");
+                MessageConfig.getInstance().sendPrefixedMessageFromConfig(p, "messages.resourceadmin.delete.evacmessage");
                 if (p.getRespawnLocation() != null) {
                     p.teleport(p.getRespawnLocation());
                 } else {
@@ -86,11 +86,11 @@ public class ResourceAdminCommand implements CommandExecutor, TabCompleter {
             Bukkit.dispatchCommand(sender, "adminwarps purge " + worldname);
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "cmi resetdbfields Homes -w:" + worldname);
             worldManager.deleteWorld(worldname);
-            MessageUtils.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.delete.worldsuccess",
+            MessageConfig.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.delete.worldsuccess",
                     "world", w.getName()
             );
         } else {
-            MessageUtils.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.delete.nullworld",
+            MessageConfig.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.delete.nullworld",
                     "world", worldname
             );
         }
@@ -117,23 +117,23 @@ public class ResourceAdminCommand implements CommandExecutor, TabCompleter {
             w = Bukkit.getWorld(worldname);
             w.getWorldBorder().setCenter(0, 0);
             w.getWorldBorder().setSize(16000);
-            Loggers.log(Level.INFO, AdminTools.getInstance().getLogger(), MessageUtils.getInstance().fromConfig("messages.resourceadmin.setup.setborder",
+            Loggers.log(Level.INFO, AdminTools.getInstance().getLogger(), MessageConfig.getInstance().fromConfig("messages.resourceadmin.setup.setborder",
                     "world", w.getName())
             );
             w.setDifficulty(Difficulty.HARD);
-            Loggers.log(Level.INFO, AdminTools.getInstance().getLogger(), MessageUtils.getInstance().fromConfig("messages.resourceadmin.setup.setdifficulty",
+            Loggers.log(Level.INFO, AdminTools.getInstance().getLogger(), MessageConfig.getInstance().fromConfig("messages.resourceadmin.setup.setdifficulty",
                     "world", w.getName())
             );
-            if (ConfigManager.getInstance().isResourcePreGenerate()) {
+            if (MainConfig.getInstance().isResourcePreGenerate()) {
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "chunky world " + worldname);
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "chunky worldborder");
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "chunky start");
             }
-            MessageUtils.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.setup.created",
+            MessageConfig.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.setup.created",
                     "world", w.getName()
             );
         } else {
-            MessageUtils.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.setup.exists",
+            MessageConfig.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.setup.exists",
                     "world", w.getName()
             );
         }
