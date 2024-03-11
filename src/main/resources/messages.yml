@@ -1,11 +1,11 @@
 messages:
   prefix: "<gray>[<aqua>AdminTools</aqua>]</gray> "
-  reloaded: "<color:#87ceeb>AdminTools Config Reloaded</color>"
+  reloaded: "<color:#F0E68C>AdminTools Config Reloaded</color>"
   resourceadmin:
     usage:
       - "<green>ResourceAdmin Usage:</green>"
-      - "<color:#87ceeb>/resourceadmin delete</color>"
-      - "<color:#87ceeb>/resourceadmin setup</color>"
+      - "<color:#F0E68C>/resourceadmin delete</color>"
+      - "<color:#F0E68C>/resourceadmin setup</color>"
     setup:
       setborder: "<green>World {world}'s border has been set</green>"
       setdifficulty: "<green>World {world}'s difficulty has been set</green>"
@@ -14,12 +14,12 @@ messages:
       complete: "<green>Resource Setup Complete!</green>"
     delete:
       confirm: "<red>Type this command again to confirm.</red>"
-      starting: "<color:#87ceeb>Resource Deletion Starting...</color>"
+      starting: "<color:#F0E68C>Resource Deletion Starting...</color>"
       evacmessage: "<gold>Resource is resetting. You have been teleported to Spawn.</gold>"
       nullworld: "<red>World {world} is null! Skipping...</red>"
       worldsuccess: "<green>World {world} has been deleted.</green>"
       complete: "<green>Resource Deletion Complete!</green>"
-    setevac: "<color:#87ceeb>Set the Resource Evacuation Location.</color>"
+    setevac: "<color:#F0E68C>Set the Resource Evacuation Location.</color>"
   mendingprevention:
     denymessage: "<red>You cannot apply mending to custom items!</red>"
   mapartprotection:

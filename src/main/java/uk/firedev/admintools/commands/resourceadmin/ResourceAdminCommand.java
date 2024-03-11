@@ -25,7 +25,7 @@ import java.util.logging.Level;
 public class ResourceAdminCommand implements CommandExecutor, TabCompleter {
 
     public final MVWorldManager worldManager = AdminTools.getInstance().mvCore.getMVWorldManager();
-    private static List<UUID> deleteConfirmation = new ArrayList<>();
+    private static final List<UUID> deleteConfirmation = new ArrayList<>();
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         if (args.length == 0) {
