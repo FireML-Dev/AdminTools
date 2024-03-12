@@ -6,11 +6,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerLoadEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import uk.firedev.daisylib.Loggers;
-import uk.firedev.daisylib.libs.Anon8281.universalScheduler.UniversalScheduler;
-import uk.firedev.daisylib.libs.Anon8281.universalScheduler.scheduling.schedulers.TaskScheduler;
-import uk.firedev.admintools.commands.DisablePluginCommand;
 import uk.firedev.admintools.commands.AdminToolsCommand;
+import uk.firedev.admintools.commands.DisablePluginCommand;
 import uk.firedev.admintools.commands.resourceadmin.ResourceAdminCommand;
 import uk.firedev.admintools.commands.resourceadmin.ResourceAdminListener;
 import uk.firedev.admintools.config.MainConfig;
@@ -20,6 +17,9 @@ import uk.firedev.admintools.jobs.JobsPlacePatch;
 import uk.firedev.admintools.listeners.BowProtection;
 import uk.firedev.admintools.listeners.MendingPrevention;
 import uk.firedev.admintools.plotsquared.PreventMap;
+import uk.firedev.daisylib.Loggers;
+import uk.firedev.daisylib.libs.Anon8281.universalScheduler.UniversalScheduler;
+import uk.firedev.daisylib.libs.Anon8281.universalScheduler.scheduling.schedulers.TaskScheduler;
 
 import java.util.logging.Level;
 
@@ -54,8 +54,7 @@ public class AdminTools extends JavaPlugin implements Listener {
         }
         if (pm.isPluginEnabled("Multiverse-Core")) {
             mvCore = (MultiverseCore) pm.getPlugin("Multiverse-Core");
-            this.getCommand("resourceadmin").setExecutor(new ResourceAdminCommand());
-            this.getCommand("resourceadmin").setTabCompleter(new ResourceAdminCommand());
+            new ResourceAdminCommand().registerCommand("resourceadmin", this);
             pm.registerEvents(new ResourceAdminListener(), this);
             Loggers.log(Level.INFO, getLogger(), "ResourceAdmin Command has been enabled!");
         }
@@ -80,11 +79,8 @@ public class AdminTools extends JavaPlugin implements Listener {
     }
 
     private void loadCommands() {
-        this.getCommand("admintools").setExecutor(new AdminToolsCommand());
-        this.getCommand("admintools").setTabCompleter(new AdminToolsCommand());
-
-        this.getCommand("disableplugin").setExecutor(new DisablePluginCommand());
-        this.getCommand("disableplugin").setTabCompleter(new DisablePluginCommand());
+        new AdminToolsCommand().registerCommand("admintools", this);
+        new DisablePluginCommand().registerCommand("disableplugin", this);
     }
 
     private void registerEvents() {

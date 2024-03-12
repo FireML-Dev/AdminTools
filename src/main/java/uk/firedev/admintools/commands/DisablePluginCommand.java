@@ -1,21 +1,20 @@
 package uk.firedev.admintools.commands;
 
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
-import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import uk.firedev.admintools.AdminTools;
 import uk.firedev.admintools.config.MessageConfig;
+import uk.firedev.daisylib.command.ICommand;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class DisablePluginCommand implements CommandExecutor, TabCompleter {
+public class DisablePluginCommand implements ICommand {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
@@ -26,7 +25,7 @@ public class DisablePluginCommand implements CommandExecutor, TabCompleter {
         Plugin pl = pm.getPlugin(args[0]);
         if (pm.isPluginEnabled(pl)) {
             pm.disablePlugin(pl);
-            MessageConfig.getInstance().sendMessage(sender, "<red>Disabled " + pl.getName() + "</red>");
+            MessageConfig.getInstance().sendPrefixedMessage(sender, "<red>Disabled " + pl.getName() + "</red>");
             return true;
         }
         return false;
@@ -34,16 +33,20 @@ public class DisablePluginCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
-        List<String> names = new ArrayList<>();
-        for (Plugin plugin : AdminTools.getInstance().getServer().getPluginManager().getPlugins()) {
-            if (plugin.isEnabled()) {
-                names.add(plugin.getName());
-            }
+        if (!(sender instanceof Player)) {
+            return List.of();
         }
-        List<String> suggest = new ArrayList<>(names);
-        List<String> completions = new ArrayList<>();
-        StringUtil.copyPartialMatches(args[0], suggest, completions);
-        return completions;
+
+        return switch (args.length) {
+            case 1 -> processTabCompletions(args[0],
+                    // List of all enabled plugins
+                    Arrays.stream(AdminTools.getInstance().getServer().getPluginManager().getPlugins())
+                            .filter(Plugin::isEnabled)
+                            .map(Plugin::getName)
+                            .toList()
+            );
+            default -> List.of();
+        };
     }
 
 }

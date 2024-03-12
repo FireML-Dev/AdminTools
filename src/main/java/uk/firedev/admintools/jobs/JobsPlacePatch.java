@@ -9,8 +9,8 @@ import org.bukkit.block.data.type.Sapling;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import uk.firedev.daisylib.utils.BlockUtils;
 import uk.firedev.admintools.config.MainConfig;
+import uk.firedev.daisylib.utils.BlockUtils;
 
 import java.util.List;
 
