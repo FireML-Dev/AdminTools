@@ -7,7 +7,7 @@ import org.bukkit.event.inventory.FurnaceSmeltEvent;
 import uk.firedev.admintools.config.MainConfig;
 import uk.firedev.daisylib.utils.ItemUtils;
 
-public class BowProtection implements Listener {
+public class CustomItemProtection implements Listener {
 
     @EventHandler
     public void onBurn(FurnaceBurnEvent e) {

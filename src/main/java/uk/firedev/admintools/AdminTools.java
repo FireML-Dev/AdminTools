@@ -16,7 +16,7 @@ import uk.firedev.admintools.denizen.DenizenIntegration;
 import uk.firedev.admintools.jobs.DenizenKillLimiter;
 import uk.firedev.admintools.jobs.DenizenNoPaymentFlag;
 import uk.firedev.admintools.jobs.JobsPlacePatch;
-import uk.firedev.admintools.listeners.BowProtection;
+import uk.firedev.admintools.listeners.CustomItemProtection;
 import uk.firedev.admintools.listeners.MendingPrevention;
 import uk.firedev.admintools.plotsquared.PreventMap;
 import uk.firedev.daisylib.Loggers;
@@ -94,7 +94,7 @@ public class AdminTools extends JavaPlugin implements Listener {
         PluginManager pm = this.getServer().getPluginManager();
         pm.registerEvents(this, this);
         pm.registerEvents(new MendingPrevention(), this);
-        pm.registerEvents(new BowProtection(), this);
+        pm.registerEvents(new CustomItemProtection(), this);
     }
 
     public static AdminTools getInstance() { return instance; }
