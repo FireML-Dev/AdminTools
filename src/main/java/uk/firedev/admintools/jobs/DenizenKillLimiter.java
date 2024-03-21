@@ -23,13 +23,9 @@ public class DenizenKillLimiter implements Listener {
             Entity entity = event.getLivingEntity();
             // check if we should pay for this entity
             AbstractFlagTracker tracker = new PlayerTag(event.getPlayer()).getFlagTracker();
-            System.out.println("killTracker." + entity.getType());
             ObjectTag flagValue = tracker.getFlagValue("killTracker." + entity.getType());
             String victimUUID = String.valueOf(entity.getUniqueId());
-            System.out.println(victimUUID);
-            System.out.println(flagValue);
             if (flagValue instanceof ListTag listTag && !listTag.contains(victimUUID)) {
-                System.out.println("Entity has been ignored");
                 event.setCancelled(true);
             }
         }

@@ -27,7 +27,6 @@ public class DenizenNoPaymentFlag implements Listener {
             // check if we should pay for this location
             AbstractFlagTracker tracker = new LocationTag(event.getBlock().getLocation()).getFlagTracker();
             if (tracker.hasFlag("noJobsPayment")) {
-                System.out.println("Had noJobsPayment Flag");
                 event.setCancelled(true);
             }
         }
