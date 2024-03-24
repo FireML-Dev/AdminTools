@@ -8,20 +8,8 @@ softdepend:
   - EvenMoreFish
   - CMI
   - Multiverse-Core
-  - EcoItems
-  - EcoArmor
   - Denizen
-  - eco
-  - mcMMO
   - VotingPlugin
 author: FireML
 description: ${project.description}
 folia-supported: true
-
-commands:
-  resourceadmin:
-    description: "Manages the Resource Worlds"
-    permission: "admintools.resourceadmin"
-  disableplugin:
-    description: "Disables plugins if they're being annoying"
-    permission: "admintools.disableplugin"

@@ -5,59 +5,68 @@ import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.World;
 import org.bukkit.WorldType;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 import uk.firedev.admintools.AdminTools;
 import uk.firedev.admintools.config.MainConfig;
 import uk.firedev.admintools.config.MessageConfig;
 import uk.firedev.daisylib.Loggers;
-import uk.firedev.daisylib.command.ICommand;
+import uk.firedev.daisylib.libs.commandapi.CommandAPICommand;
+import uk.firedev.daisylib.libs.commandapi.CommandPermission;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 
-public class ResourceAdminCommand implements ICommand {
+public class ResourceAdminCommand extends CommandAPICommand {
 
-    public final MVWorldManager worldManager = AdminTools.getInstance().mvCore.getMVWorldManager();
-    private static final List<UUID> deleteConfirmation = new ArrayList<>();
+    private static ResourceAdminCommand instance = null;
 
-    @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-        if (args.length == 0) {
-            MessageConfig.getInstance().fromConfigList("messages.resourceadmin.usage").forEach(
-                    s -> MessageConfig.getInstance().sendPrefixedMessage(sender, s)
-            );
-            return true;
+    private ResourceAdminCommand() {
+        super("resourceadmin");
+        setPermission(CommandPermission.fromString("admintools.resourceadmin"));
+        withShortDescription("Manages the Resource Worlds");
+        withFullDescription("Manages the Resource Worlds");
+        withSubcommands(getDeleteCommand(), getSetupCommand());
+        executes((sender, arguments) -> {
+            MessageConfig.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.usage");
+        });
+    }
+
+    public static ResourceAdminCommand getInstance() {
+        if (instance == null) {
+            instance = new ResourceAdminCommand();
         }
+        return instance;
+    }
 
-        switch (args[0]) {
-            case "delete" -> {
-                if (sender instanceof Player p) {
-                    UUID uuid = p.getUniqueId();
+    private CommandAPICommand getDeleteCommand() {
+        return new CommandAPICommand("delete")
+                .executesPlayer((player, arguments) -> {
+                    UUID uuid = player.getUniqueId();
                     if (isInDeleteConfirmList(uuid)) {
                         removeFromDeleteConfirmList(uuid);
-                        this.deleteWorlds(sender);
+                        this.deleteWorlds(player);
                     } else {
                         addToDeleteConfirmList(uuid);
-                        MessageConfig.getInstance().sendPrefixedMessageFromConfig(p, "messages.resourceadmin.delete.confirm");
+                        MessageConfig.getInstance().sendPrefixedMessageFromConfig(player, "messages.resourceadmin.delete.confirm");
                     }
-                } else {
+                })
+                .executes((sender, arguments) -> {
                     this.deleteWorlds(sender);
-                }
-                return true;
-            }
-            case "setup" -> {
-                this.createWorlds(sender);
-                MessageConfig.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.setup.complete");
-                return true;
-            }
-        }
-        return false;
+                });
     }
+
+    private CommandAPICommand getSetupCommand() {
+        return new CommandAPICommand("setup")
+                .executes((sender, arguments) -> {
+                    this.createWorlds(sender);
+                    MessageConfig.getInstance().sendPrefixedMessageFromConfig(sender, "messages.resourceadmin.setup.complete");
+                });
+    }
+
+    public final MVWorldManager worldManager = AdminTools.getInstance().mvCore.getMVWorldManager();
+    private final List<UUID> deleteConfirmation = new ArrayList<>();
 
     private void deleteWorlds(CommandSender sender) {
         // Notify the sender
@@ -138,38 +147,21 @@ public class ResourceAdminCommand implements ICommand {
         }
     }
 
-    private static boolean isInDeleteConfirmList(UUID uuid) {
+    private boolean isInDeleteConfirmList(UUID uuid) {
         return deleteConfirmation.contains(uuid);
     }
 
-    public static void addToDeleteConfirmList(UUID uuid) {
+    public void addToDeleteConfirmList(UUID uuid) {
         if (!isInDeleteConfirmList(uuid)) {
             deleteConfirmation.add(uuid);
             AdminTools.getScheduler().runTaskLater(() -> removeFromDeleteConfirmList(uuid), 100L);
         }
     }
 
-    public static void removeFromDeleteConfirmList(UUID uuid) {
+    public void removeFromDeleteConfirmList(UUID uuid) {
         if (isInDeleteConfirmList(uuid)) {
             deleteConfirmation.remove(uuid);
         }
-    }
-
-    @Override
-    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, String[] args) {
-
-        if (!(sender instanceof Player)) {
-            return List.of();
-        }
-
-        return switch (args.length) {
-            case 1 -> processTabCompletions(args[0], List.of(
-                    "setup",
-                    "delete"
-            ));
-            default -> List.of();
-        };
-
     }
 
 }

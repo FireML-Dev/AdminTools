@@ -5,10 +5,10 @@ messages:
     "<color:#F0E68C>Usage:"
     "<aqua>/admintools reload"
   resourceadmin:
-    usage:
-      - "<green>ResourceAdmin Usage:</green>"
-      - "<color:#F0E68C>/resourceadmin delete</color>"
-      - "<color:#F0E68C>/resourceadmin setup</color>"
+    usage: |-
+      "<green>ResourceAdmin Usage:</green>"
+      "<color:#F0E68C>/resourceadmin delete</color>"
+      "<color:#F0E68C>/resourceadmin setup</color>"
     setup:
       setborder: "<green>World {world}'s border has been set</green>"
       setdifficulty: "<green>World {world}'s difficulty has been set</green>"

@@ -34,19 +34,15 @@ public class AdminTools extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
         instance = this;
         scheduler = UniversalScheduler.getScheduler(this);
-        saveDefaultConfig();
         reload();
         loadCommands();
         registerEvents();
     }
 
     @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-    }
+    public void onDisable() {}
 
     @EventHandler
     private void onServerLoad(ServerLoadEvent event) {
@@ -56,7 +52,7 @@ public class AdminTools extends JavaPlugin implements Listener {
         }
         if (pm.isPluginEnabled("Multiverse-Core")) {
             mvCore = (MultiverseCore) pm.getPlugin("Multiverse-Core");
-            new ResourceAdminCommand().registerCommand("resourceadmin", this);
+            ResourceAdminCommand.getInstance().register();
             pm.registerEvents(new ResourceAdminListener(), this);
             Loggers.log(Level.INFO, getLogger(), "ResourceAdmin Command has been enabled!");
         }

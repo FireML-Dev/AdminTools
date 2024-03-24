@@ -10,7 +10,7 @@ public class ResourceAdminListener implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
         Player p = e.getPlayer();
-        ResourceAdminCommand.removeFromDeleteConfirmList(p.getUniqueId());
+        ResourceAdminCommand.getInstance().removeFromDeleteConfirmList(p.getUniqueId());
     }
 
 }
