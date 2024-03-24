@@ -1,6 +1,5 @@
 package uk.firedev.admintools.jobs;
 
-import com.denizenscript.denizen.objects.LocationTag;
 import com.denizenscript.denizen.objects.PlayerTag;
 import com.denizenscript.denizencore.flags.AbstractFlagTracker;
 import com.denizenscript.denizencore.objects.ObjectTag;

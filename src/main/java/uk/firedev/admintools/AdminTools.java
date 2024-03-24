@@ -75,10 +75,6 @@ public class AdminTools extends JavaPlugin implements Listener {
         }
     }
 
-    public void disablePlugin() {
-        this.getServer().getPluginManager().disablePlugin(this);
-    }
-
     public void reload() {
         this.reloadConfig();
         MainConfig.getInstance().reload();
@@ -87,7 +83,7 @@ public class AdminTools extends JavaPlugin implements Listener {
 
     private void loadCommands() {
         AdminToolsCommand.getInstance().register();
-        new DisablePluginCommand().registerCommand("disableplugin", this);
+        DisablePluginCommand.getInstance().register();
     }
 
     private void registerEvents() {

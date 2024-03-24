@@ -1,52 +1,58 @@
 package uk.firedev.admintools.commands;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import uk.firedev.admintools.AdminTools;
 import uk.firedev.admintools.config.MessageConfig;
-import uk.firedev.daisylib.command.ICommand;
+import uk.firedev.daisylib.libs.commandapi.CommandAPICommand;
+import uk.firedev.daisylib.libs.commandapi.CommandPermission;
+import uk.firedev.daisylib.libs.commandapi.arguments.Argument;
+import uk.firedev.daisylib.libs.commandapi.arguments.ArgumentSuggestions;
+import uk.firedev.daisylib.libs.commandapi.arguments.StringArgument;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
-public class DisablePluginCommand implements ICommand {
+public class DisablePluginCommand extends CommandAPICommand {
 
-    @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        if (args.length == 0) {
-            return false;
-        }
-        PluginManager pm = AdminTools.getInstance().getServer().getPluginManager();
-        Plugin pl = pm.getPlugin(args[0]);
-        if (pm.isPluginEnabled(pl)) {
-            pm.disablePlugin(pl);
-            MessageConfig.getInstance().sendPrefixedMessage(sender, "<red>Disabled " + pl.getName() + "</red>");
-            return true;
-        }
-        return false;
+    private static DisablePluginCommand instance = null;
+
+    private DisablePluginCommand() {
+        super("disableplugin");
+        setPermission(CommandPermission.fromString("admintools.disableplugin"));
+        withShortDescription("Disables plugins if they're being annoying");
+        withFullDescription("Disables plugins if they're being annoying");
+        withArguments(getPluginsArgument());
+        executes((sender, arguments) -> {
+            String[] args = arguments.rawArgs();
+            if (args.length == 0) {
+                return;
+            }
+            PluginManager pm = AdminTools.getInstance().getServer().getPluginManager();
+            Plugin pl = pm.getPlugin(args[0]);
+            if (pm.isPluginEnabled(pl)) {
+                pm.disablePlugin(pl);
+                MessageConfig.getInstance().sendPrefixedMessage(sender, "<red>Disabled " + pl.getName() + "</red>");
+            }
+        });
     }
 
-    @Override
-    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
-        if (!(sender instanceof Player)) {
-            return List.of();
+    public static DisablePluginCommand getInstance() {
+        if (instance == null) {
+            instance = new DisablePluginCommand();
         }
+        return instance;
+    }
 
-        return switch (args.length) {
-            case 1 -> processTabCompletions(args[0],
-                    // List of all enabled plugins
-                    Arrays.stream(AdminTools.getInstance().getServer().getPluginManager().getPlugins())
-                            .filter(Plugin::isEnabled)
-                            .map(Plugin::getName)
-                            .toList()
-            );
-            default -> List.of();
-        };
+    private Argument<?> getPluginsArgument() {
+        return new StringArgument("plugin").includeSuggestions(ArgumentSuggestions.stringsAsync(info ->
+                CompletableFuture.supplyAsync(() ->
+                        Arrays.stream(Bukkit.getPluginManager().getPlugins())
+                                .filter(Plugin::isEnabled)
+                                .map(Plugin::getName)
+                                .toArray(String[]::new)
+                )));
     }
 
 }
