@@ -2,14 +2,18 @@ name: AdminTools
 version: '${project.version} ${buildDescription}'
 main: uk.firedev.admintools.AdminTools
 api-version: '1.20'
-depend:
-  - DaisyLib
-softdepend:
-  - EvenMoreFish
-  - CMI
-  - Multiverse-Core
-  - Denizen
-  - VotingPlugin
 author: FireML
 description: ${project.description}
 folia-supported: true
+dependencies:
+  server:
+    DaisyLib:
+      required: true
+    CMI:
+      required: false
+    EvenMoreFish:
+      required: false
+    Multiverse-Core:
+      required: false
+    Denizen:
+      required: false
