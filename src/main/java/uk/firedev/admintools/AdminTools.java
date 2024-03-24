@@ -86,7 +86,7 @@ public class AdminTools extends JavaPlugin implements Listener {
     }
 
     private void loadCommands() {
-        new AdminToolsCommand().registerCommand("admintools", this);
+        AdminToolsCommand.getInstance().register();
         new DisablePluginCommand().registerCommand("disableplugin", this);
     }
 

@@ -19,9 +19,6 @@ description: ${project.description}
 folia-supported: true
 
 commands:
-  admintools:
-    description: "Handles the AdminTools Plugin"
-    permission: "admintools.command"
   resourceadmin:
     description: "Manages the Resource Worlds"
     permission: "admintools.resourceadmin"

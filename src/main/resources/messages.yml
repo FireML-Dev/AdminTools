@@ -1,6 +1,9 @@
 messages:
   prefix: "<gray>[<aqua>AdminTools</aqua>]</gray> "
   reloaded: "<color:#F0E68C>AdminTools Config Reloaded</color>"
+  usage: |-
+    "<color:#F0E68C>Usage:"
+    "<aqua>/admintools reload"
   resourceadmin:
     usage:
       - "<green>ResourceAdmin Usage:</green>"

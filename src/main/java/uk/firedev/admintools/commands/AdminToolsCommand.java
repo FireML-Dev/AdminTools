@@ -1,43 +1,38 @@
 package uk.firedev.admintools.commands;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import uk.firedev.admintools.AdminTools;
 import uk.firedev.admintools.config.MessageConfig;
-import uk.firedev.daisylib.command.ICommand;
+import uk.firedev.daisylib.libs.commandapi.CommandAPICommand;
+import uk.firedev.daisylib.libs.commandapi.CommandPermission;
 
-import java.util.List;
+public class AdminToolsCommand extends CommandAPICommand {
 
-public class AdminToolsCommand implements ICommand {
+    private static AdminToolsCommand instance = null;
 
-    @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (args.length == 0) {
-            return false;
-        }
-        if (args[0].equals("reload")) {
-            AdminTools.getInstance().reload();
-            MessageConfig.getInstance().sendPrefixedMessageFromConfig(sender, "messages.reloaded");
-            return true;
-        }
-        return false;
+    private AdminToolsCommand() {
+        super("admintools");
+        setPermission(CommandPermission.fromString("admintools.command"));
+        withShortDescription("Handles the AdminTools Plugin");
+        withFullDescription("Handles the AdminTools Plugin");
+        withSubcommands(getReloadCommand());
+        executes((sender, arguments) -> {
+            MessageConfig.getInstance().sendPrefixedMessageFromConfig(sender, "messages.usage");
+        });
     }
 
-    @Override
-    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        if (!(sender instanceof Player)) {
-            return List.of();
+    public static AdminToolsCommand getInstance() {
+        if (instance == null) {
+            instance = new AdminToolsCommand();
         }
+        return instance;
+    }
 
-        return switch (args.length) {
-            case 1 -> processTabCompletions(args[0], List.of(
-                    "reload"
-            ));
-            default -> List.of();
-        };
+    private CommandAPICommand getReloadCommand() {
+        return new CommandAPICommand("reload")
+                .executes((sender, arguments) -> {
+                    AdminTools.getInstance().reload();
+                    MessageConfig.getInstance().sendPrefixedMessageFromConfig(sender, "messages.reloaded");
+                });
     }
 
 }
