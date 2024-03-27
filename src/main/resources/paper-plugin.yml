@@ -17,3 +17,5 @@ dependencies:
       required: false
     Denizen:
       required: false
+    HuskChat:
+      required: false

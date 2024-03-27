@@ -91,6 +91,10 @@
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
+        <repository>
+            <id>william278.net</id>
+            <url>https://repo.william278.net/releases/</url>
+        </repository>
     </repositories>
 
     <dependencyManagement>
@@ -122,7 +126,8 @@
             <groupId>com.oheers</groupId>
             <artifactId>EvenMoreFish</artifactId>
             <version>1.6.11.17</version>
-            <scope>provided</scope>
+            <scope>system</scope>
+            <systemPath>${basedir}/libs/even-more-fish-1.6.11.17.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.denizenscript</groupId>
@@ -181,6 +186,12 @@
             <groupId>uk.firedev</groupId>
             <artifactId>DaisyLib</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.william278</groupId>
+            <artifactId>huskchat</artifactId>
+            <version>2.7.1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
