@@ -157,8 +157,9 @@
         <dependency>
             <groupId>Jobs</groupId>
             <artifactId>jobs</artifactId>
-            <version>5.2.1.2</version>
-            <scope>provided</scope>
+            <version>5.2.2.3</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/libs/Jobs5.2.2.3.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.intellectualsites.plotsquared</groupId>

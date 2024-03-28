@@ -12,11 +12,19 @@ dependencies:
       load: BEFORE
     CMI:
       required: false
+      load: BEFORE
     EvenMoreFish:
       required: false
+      load: BEFORE
     Multiverse-Core:
       required: false
+      load: BEFORE
     Denizen:
       required: false
+      load: BEFORE
     HuskChat:
       required: false
+      load: BEFORE
+    Jobs:
+      required: false
+      load: BEFORE

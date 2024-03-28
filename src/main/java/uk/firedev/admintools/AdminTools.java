@@ -13,6 +13,7 @@ import uk.firedev.admintools.commands.resourceadmin.ResourceAdminListener;
 import uk.firedev.admintools.config.MainConfig;
 import uk.firedev.admintools.config.MessageConfig;
 import uk.firedev.admintools.denizen.DenizenIntegration;
+import uk.firedev.admintools.evenmorefish.EMFRewardManager;
 import uk.firedev.admintools.jobs.DenizenKillLimiter;
 import uk.firedev.admintools.jobs.DenizenNoPaymentFlag;
 import uk.firedev.admintools.jobs.JobsPlacePatch;
@@ -68,6 +69,9 @@ public class AdminTools extends JavaPlugin implements Listener {
                 pm.registerEvents(new DenizenKillLimiter(), this);
                 Loggers.log(Level.INFO, getLogger(), "Denizen Jobs Hooks have been enabled.");
             }
+        }
+        if (pm.isPluginEnabled("EvenMoreFish")) {
+            EMFRewardManager.getInstance().load();
         }
     }
 
