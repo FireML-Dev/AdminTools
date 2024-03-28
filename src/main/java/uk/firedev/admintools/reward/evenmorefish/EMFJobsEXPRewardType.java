@@ -1,10 +1,9 @@
-package uk.firedev.admintools.evenmorefish;
+package uk.firedev.admintools.reward.evenmorefish;
 
 import com.gamingmesh.jobs.Jobs;
 import com.gamingmesh.jobs.container.Job;
 import com.gamingmesh.jobs.container.JobProgression;
 import com.gamingmesh.jobs.container.JobsPlayer;
-import com.oheers.fish.api.reward.RewardType;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import uk.firedev.admintools.AdminTools;
 import uk.firedev.daisylib.utils.ObjectUtils;
 
-public class JobsEXPRewardType implements RewardType {
+public class EMFJobsEXPRewardType implements com.oheers.fish.api.reward.RewardType {
 
     @Override
     public void doReward(@NotNull Player player, @NotNull String key, @NotNull String value, Location location) {
@@ -38,7 +37,7 @@ public class JobsEXPRewardType implements RewardType {
         double xp = Double.parseDouble(parsedValue[1]);
         JobProgression prog = jobsPlayer.getJobProgression(job);
         if (prog != null) {
-            jobsPlayer.getJobProgression(job).addExperience(xp);
+            prog.addExperience(xp);
             jobsPlayer.setSaved(false);
         }
     }
