@@ -1,4 +1,4 @@
-package uk.firedev.admintools.reward.evenmorefish;
+package uk.firedev.admintools.reward.daisylib.jobs;
 
 import com.gamingmesh.jobs.Jobs;
 import com.gamingmesh.jobs.container.Job;
@@ -6,19 +6,18 @@ import com.gamingmesh.jobs.container.JobProgression;
 import com.gamingmesh.jobs.container.JobsPlayer;
 import net.Zrips.CMILib.Equations.ParseError;
 import net.Zrips.CMILib.Equations.Parser;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import uk.firedev.admintools.AdminTools;
 
-public class EMFJobsEXPEquationRewardType implements com.oheers.fish.api.reward.RewardType {
+public class DaisyLibJobsEXPEquationRewardType implements uk.firedev.daisylib.reward.RewardType {
 
     @Override
-    public void doReward(@NotNull Player player, @NotNull String key, @NotNull String value, Location hookLocation) {
+    public void doReward(@NotNull Player player, @NotNull String key, @NotNull String value) {
         String[] parsedValue = value.split(",");
         if (parsedValue.length < 2) {
-            getPlugin().getLogger().warning("Invalid format for EvenMoreFish RewardType " + getIdentifier() + ". Valid format: \"JOBS_EXP:Miner,50\"");
+            getPlugin().getLogger().warning("Invalid format for EvenMoreFish RewardType " + getIdentifier() + ". Valid format: \"JOBS_EXP:Miner,(4 + 2) * joblevel\"");
             return;
         }
         JobsPlayer jobsPlayer = Jobs.getPlayerManager().getJobsPlayer(player);
@@ -40,7 +39,6 @@ public class EMFJobsEXPEquationRewardType implements com.oheers.fish.api.reward.
                 getPlugin().getLogger().warning("Invalid equation specified for EvenMoreFish RewardType " + getIdentifier() + ": " + parsedValue[1]);
                 return;
             }
-            System.out.println(equation.getValue());
             prog.addExperience(equation.getValue());
             jobsPlayer.setSaved(false);
         }

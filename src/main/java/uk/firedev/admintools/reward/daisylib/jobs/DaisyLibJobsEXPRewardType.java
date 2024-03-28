@@ -1,4 +1,4 @@
-package uk.firedev.admintools.reward.daisylib;
+package uk.firedev.admintools.reward.daisylib.jobs;
 
 import com.gamingmesh.jobs.Jobs;
 import com.gamingmesh.jobs.container.Job;
