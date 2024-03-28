@@ -9,6 +9,7 @@ dependencies:
   server:
     DaisyLib:
       required: true
+      load: BEFORE
     CMI:
       required: false
     EvenMoreFish:
