@@ -12,7 +12,6 @@ import uk.firedev.admintools.denizen.daisylib.extensions.DaisyLibElementExtensio
 import uk.firedev.admintools.denizen.daisylib.extensions.DaisyLibLocationExtensions;
 import uk.firedev.admintools.denizen.evenmorefish.events.EMFFishCaughtScriptEvent;
 import uk.firedev.admintools.denizen.evenmorefish.extensions.EMFItemExtensions;
-import uk.firedev.admintools.denizen.huskchat.events.HuskChatPlayerChatsScriptEvent;
 import uk.firedev.daisylib.Loggers;
 
 import java.util.logging.Level;
@@ -44,10 +43,6 @@ public class DenizenIntegration {
                 ScriptEvent.registerScriptEvent(new CMIPlayerAFKLeaveScriptEvent());
                 CMIPlayerExtensions.register();
                 Loggers.log(Level.INFO, AdminTools.getInstance().getLogger(), "Loaded bridge for 'CMI'!");
-            }
-            if (pm.isPluginEnabled("HuskChat")) {
-                ScriptEvent.registerScriptEvent(new HuskChatPlayerChatsScriptEvent());
-                Loggers.log(Level.INFO, AdminTools.getInstance().getLogger(), "Loaded bridge for 'HuskChat'!");
             }
         }
     }
