@@ -19,7 +19,7 @@ public class MendingPrevention implements Listener {
         if (!MainConfig.getInstance().preventCustomItemMending()) {
             return;
         }
-        if (!(e.getInventory() instanceof AnvilInventory inv)) {
+        if (!(e.getClickedInventory() instanceof AnvilInventory inv)) {
             return;
         }
         Player p = (Player) e.getWhoClicked();
