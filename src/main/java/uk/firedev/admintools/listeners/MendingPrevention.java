@@ -19,10 +19,9 @@ public class MendingPrevention implements Listener {
         if (!MainConfig.getInstance().preventCustomItemMending()) {
             return;
         }
-        if (!(e.getClickedInventory() instanceof AnvilInventory inv)) {
+        if (!(e.getClickedInventory() instanceof AnvilInventory inv) || !(e.getWhoClicked() instanceof Player p)) {
             return;
         }
-        Player p = (Player) e.getWhoClicked();
         ItemStack result = inv.getResult();
         if (result == null || e.getSlot() != 2 || !result.containsEnchantment(Enchantment.MENDING)) {
             return;
