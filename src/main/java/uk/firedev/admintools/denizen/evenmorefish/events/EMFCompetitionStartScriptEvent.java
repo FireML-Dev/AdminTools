@@ -13,7 +13,7 @@ public class EMFCompetitionStartScriptEvent extends BukkitScriptEvent implements
     // @Events
     // emf competition starts
     //
-    // @Cancellable true
+    // @Cancellable false
     //
     // @Triggers when an emf competition starts
     //
