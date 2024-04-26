@@ -11,6 +11,7 @@ import uk.firedev.admintools.denizen.daisylib.events.PlayerMoveChunkScriptEvent;
 import uk.firedev.admintools.denizen.daisylib.extensions.DaisyLibElementExtensions;
 import uk.firedev.admintools.denizen.daisylib.extensions.DaisyLibLocationExtensions;
 import uk.firedev.admintools.denizen.evenmorefish.events.EMFFishCaughtScriptEvent;
+import uk.firedev.admintools.denizen.evenmorefish.events.EMFRewardScriptEvent;
 import uk.firedev.admintools.denizen.evenmorefish.extensions.EMFItemExtensions;
 import uk.firedev.daisylib.Loggers;
 
@@ -31,6 +32,7 @@ public class DenizenIntegration {
             // Other plugins
             if (pm.isPluginEnabled("EvenMoreFish")) {
                 ScriptEvent.registerScriptEvent(new EMFFishCaughtScriptEvent());
+                ScriptEvent.registerScriptEvent(new EMFRewardScriptEvent());
                 EMFItemExtensions.register();
                 Loggers.log(Level.INFO, AdminTools.getInstance().getLogger(), "Loaded bridge for 'EvenMoreFish'!");
             }

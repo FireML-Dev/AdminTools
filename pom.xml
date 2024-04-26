@@ -153,16 +153,16 @@
         <dependency>
             <groupId>Jobs</groupId>
             <artifactId>jobs</artifactId>
-            <version>5.2.2.3</version>
+            <version>5.2.2.5</version>
             <scope>system</scope>
-            <systemPath>${basedir}/libs/Jobs5.2.2.3.jar</systemPath>
+            <systemPath>${basedir}/libs/Jobs5.2.2.5.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>CMILib</groupId>
             <artifactId>CMILib</artifactId>
-            <version>1.4.6.1</version>
+            <version>1.4.6.3</version>
             <scope>system</scope>
-            <systemPath>${basedir}/libs/CMILib1.4.6.1.jar</systemPath>
+            <systemPath>${basedir}/libs/CMILib1.4.6.3.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.intellectualsites.plotsquared</groupId>

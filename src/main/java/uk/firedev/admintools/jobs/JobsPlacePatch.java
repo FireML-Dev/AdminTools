@@ -24,14 +24,14 @@ public class JobsPlacePatch implements Listener {
             e.setCancelled(true);
             return;
         }
-        if (e.getActionInfo().getType() == ActionType.BREAK && !bypass(e.getBlock().getWorld()) && BlockUtils.isPlayerPlaced(e.getBlock().getLocation())) {
+        if (e.getActionInfo().getType() == ActionType.BREAK && !bypass(e.getBlock().getWorld()) && BlockUtils.isPlayerPlaced(e.getBlock())) {
             if (e.getBlock().getBlockData() instanceof Ageable ageable && ageable.getAge() == ageable.getMaximumAge()) {
                 return;
             }
             e.setCancelled(true);
             return;
         }
-        if (e.getActionInfo().getType() == ActionType.PLACE && !bypass(e.getBlock().getWorld()) && BlockUtils.isPlayerBroken(e.getBlock().getLocation())) {
+        if (e.getActionInfo().getType() == ActionType.PLACE && !bypass(e.getBlock().getWorld()) && BlockUtils.isPlayerBroken(e.getBlock())) {
             if (e.getBlock().getBlockData() instanceof Ageable || e.getBlock().getBlockData() instanceof Sapling) {
                 return;
             }
@@ -48,14 +48,14 @@ public class JobsPlacePatch implements Listener {
             e.setCancelled(true);
             return;
         }
-        if (e.getActionInfo().getType() == ActionType.BREAK && BlockUtils.isPlayerPlaced(e.getBlock().getLocation())) {
+        if (e.getActionInfo().getType() == ActionType.BREAK && BlockUtils.isPlayerPlaced(e.getBlock())) {
             if (e.getBlock().getBlockData() instanceof Ageable ageable && ageable.getAge() == ageable.getMaximumAge()) {
                 return;
             }
             e.setCancelled(true);
             return;
         }
-        if (e.getActionInfo().getType() == ActionType.PLACE && BlockUtils.isPlayerBroken(e.getBlock().getLocation())) {
+        if (e.getActionInfo().getType() == ActionType.PLACE && BlockUtils.isPlayerBroken(e.getBlock())) {
             if (e.getBlock().getBlockData() instanceof Ageable || e.getBlock().getBlockData() instanceof Sapling) {
                 return;
             }

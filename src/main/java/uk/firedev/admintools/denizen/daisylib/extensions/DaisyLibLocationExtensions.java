@@ -15,7 +15,7 @@ public class DaisyLibLocationExtensions {
         // @description
         // Returns whether this location ever had a block placed by a player
         // -->
-        LocationTag.tagProcessor.registerTag(ElementTag.class, "is_player_placed", (attribute, location) -> new ElementTag(BlockUtils.isPlayerPlaced(location)));
+        LocationTag.tagProcessor.registerTag(ElementTag.class, "is_player_placed", (attribute, location) -> new ElementTag(BlockUtils.isPlayerPlaced(location.getBlock())));
 
         // <--[tag]
         // @attribute <LocationTag.is_player_broken>
@@ -24,7 +24,7 @@ public class DaisyLibLocationExtensions {
         // @description
         // Returns whether this location ever had a placed block broken by a player
         // -->
-        LocationTag.tagProcessor.registerTag(ElementTag.class, "is_player_broken", (attribute, location) -> new ElementTag(BlockUtils.isPlayerBroken(location)));
+        LocationTag.tagProcessor.registerTag(ElementTag.class, "is_player_broken", (attribute, location) -> new ElementTag(BlockUtils.isPlayerBroken(location.getBlock())));
     }
 
 }

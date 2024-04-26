@@ -1,7 +1,6 @@
 package uk.firedev.admintools.reward.daisylib.denizen;
 
 import com.denizenscript.denizen.objects.ItemTag;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
