@@ -1,10 +1,7 @@
 package uk.firedev.admintools.commands.resourceadmin;
 
 import com.onarandombox.MultiverseCore.api.MVWorldManager;
-import org.bukkit.Bukkit;
-import org.bukkit.Difficulty;
-import org.bukkit.World;
-import org.bukkit.WorldType;
+import org.bukkit.*;
 import org.bukkit.command.CommandSender;
 import uk.firedev.admintools.AdminTools;
 import uk.firedev.admintools.config.MainConfig;
@@ -123,6 +120,9 @@ public class ResourceAdminCommand extends CommandAPICommand {
                     null // Specifies a custom generator. We are not using any, so we just pass null.
             );
             w = Bukkit.getWorld(worldname);
+            if (w == null) {
+                return;
+            }
             w.getWorldBorder().setCenter(0, 0);
             w.getWorldBorder().setSize(16000);
             Loggers.log(Level.INFO, AdminTools.getInstance().getLogger(), MessageConfig.getInstance().fromConfig("messages.resourceadmin.setup.setborder",
