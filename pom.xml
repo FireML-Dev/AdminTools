@@ -15,7 +15,6 @@
     <properties>
         <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jarName>${project.name}</jarName>
     </properties>
 
     <profiles>
@@ -34,7 +33,6 @@
     </profiles>
 
     <build>
-        <finalName>${jarName}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
