@@ -1,32 +1,29 @@
 messages:
   prefix: "<gray>[<aqua>AdminTools</aqua>]</gray> "
-  reloaded: "<color:#F0E68C>AdminTools Config Reloaded</color>"
-  usage: |-
-    "<color:#F0E68C>Usage:"
-    "<aqua>/admintools reload"
-  resourceadmin:
+  main-command:
+    reloaded: "{prefix}<color:#F0E68C>AdminTools Config Reloaded</color>"
     usage: |-
-      "<green>ResourceAdmin Usage:</green>"
-      "<color:#F0E68C>/resourceadmin delete</color>"
-      "<color:#F0E68C>/resourceadmin setup</color>"
+      "{prefix}<color:#F0E68C>Usage:"
+      "{prefix}<aqua>/admintools reload"
+  resource-admin:
+    usage: |-
+      "{prefix}<green>ResourceAdmin Usage:</green>"
+      "{prefix}<color:#F0E68C>/resourceadmin delete</color>"
+      "{prefix}<color:#F0E68C>/resourceadmin setup</color>"
     setup:
-      setborder: "<green>World {world}'s border has been set</green>"
-      setdifficulty: "<green>World {world}'s difficulty has been set</green>"
+      border: "<green>World {world}'s border has been set</green>"
+      difficulty: "<green>World {world}'s difficulty has been set</green>"
       exists: "<red>World {world} already exists! Skipping...</red>"
       created: "<green>World {world} has been created</green>"
       complete: "<green>Resource Setup Complete!</green>"
     delete:
       confirm: "<red>Type this command again to confirm.</red>"
       starting: "<color:#F0E68C>Resource Deletion Starting...</color>"
-      evacmessage: "<gold>Resource is resetting. You have been teleported to Spawn.</gold>"
-      nullworld: "<red>World {world} is null! Skipping...</red>"
-      worldsuccess: "<green>World {world} has been deleted.</green>"
+      evac: "<gold>Resource is resetting. You have been teleported to Spawn.</gold>"
+      null: "<red>World {world} is null! Skipping...</red>"
+      success: "<green>World {world} has been deleted.</green>"
       complete: "<green>Resource Deletion Complete!</green>"
-    setevac: "<color:#F0E68C>Set the Resource Evacuation Location.</color>"
-  mendingprevention:
-    denymessage: "<red>You cannot apply mending to custom items!</red>"
-  mapartprotection:
-    denymessage: "<red>You cannot use a map inside of this plot!</red>"
-  mcmmo:
-    repairprevention: "<red>You cannot repair custom items using mcMMO!</red>"
-    salvageprevention: "<red>You cannot salvage custom items using mcMMO!</red>"
+  mending-prevention:
+    denied: "<red>You cannot apply mending to custom items!</red>"
+  mapart-protection:
+    denied: "<red>You cannot use a map inside of this plot!</red>"

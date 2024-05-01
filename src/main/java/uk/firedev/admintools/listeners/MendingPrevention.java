@@ -28,7 +28,7 @@ public class MendingPrevention implements Listener {
         }
         if (ItemUtils.isCustomItem(result)) {
             e.setCancelled(true);
-            MessageConfig.getInstance().sendMessage(p, MessageConfig.getInstance().fromConfig("messages.mendingprevention.denymessage"));
+            MessageConfig.getInstance().getMendingPreventionDeniedMessage().sendMessage(p);
         }
     }
 

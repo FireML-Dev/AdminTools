@@ -16,7 +16,7 @@ public class AdminToolsCommand extends CommandAPICommand {
         withFullDescription("Handles the AdminTools Plugin");
         withSubcommands(getReloadCommand());
         executes((sender, arguments) -> {
-            MessageConfig.getInstance().sendPrefixedMessageFromConfig(sender, "messages.usage");
+            MessageConfig.getInstance().getMainCommandUsageMessage().sendMessage(sender);
         });
     }
 
@@ -31,7 +31,7 @@ public class AdminToolsCommand extends CommandAPICommand {
         return new CommandAPICommand("reload")
                 .executes((sender, arguments) -> {
                     AdminTools.getInstance().reload();
-                    MessageConfig.getInstance().sendPrefixedMessageFromConfig(sender, "messages.reloaded");
+                    MessageConfig.getInstance().getMainCommandReloadedMessage().sendMessage(sender);
                 });
     }
 

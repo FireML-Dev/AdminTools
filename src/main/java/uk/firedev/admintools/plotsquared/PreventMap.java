@@ -24,7 +24,7 @@ public class PreventMap implements Listener {
 
         if (plot != null && e.getItem() != null && e.getItem().getType() == Material.MAP && !validMember(plot, e.getPlayer())) {
             e.setCancelled(true);
-            MessageConfig.getInstance().sendMessage(e.getPlayer(), MessageConfig.getInstance().fromConfig("messages.mapartprotection.denymessage"));
+            MessageConfig.getInstance().getMapartProtectionDeniedMessage().sendMessage(e.getPlayer());
         }
     }
 
