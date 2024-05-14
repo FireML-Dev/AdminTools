@@ -16,7 +16,7 @@ public class MainConfig extends uk.firedev.daisylib.Config {
     public boolean preventMapsInNonOwnerPlots() { return getConfig().getBoolean("hooks.plotsquared.prevent-maps-for-non-owners", true); }
 
     private MainConfig() {
-        super("config.yml", AdminTools.getInstance(), true);
+        super("config.yml", AdminTools.getInstance(), true, true);
         instance = this;
     }
 

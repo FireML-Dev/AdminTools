@@ -11,7 +11,7 @@ public class MessageConfig extends uk.firedev.daisylib.Config {
     private static MessageConfig instance = null;
 
     private MessageConfig() {
-        super("messages.yml", AdminTools.getInstance(), true);
+        super("messages.yml", AdminTools.getInstance(), true, true);
     }
 
     public static MessageConfig getInstance() {
