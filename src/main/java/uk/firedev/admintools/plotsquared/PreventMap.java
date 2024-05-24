@@ -10,6 +10,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import uk.firedev.admintools.config.MainConfig;
 import uk.firedev.admintools.config.MessageConfig;
 
+import java.util.Objects;
+
 public class PreventMap implements Listener {
 
     @EventHandler
@@ -18,11 +20,11 @@ public class PreventMap implements Listener {
             return;
         }
         PlotAPI plotAPI = new PlotAPI();
-        Plot plot = plotAPI.wrapPlayer(e.getPlayer().getUniqueId()).getCurrentPlot();
+        Plot plot = Objects.requireNonNull(plotAPI.wrapPlayer(e.getPlayer().getUniqueId())).getCurrentPlot();
 
         if (plot != null && e.getItem() != null && e.getItem().getType() == Material.MAP && !validMember(plot, e.getPlayer())) {
             e.setCancelled(true);
-            MessageConfig.getInstance().sendMessage(e.getPlayer(), MessageConfig.getInstance().fromConfig("messages.mapartprotection.denymessage"));
+            MessageConfig.getInstance().getMapartProtectionDeniedMessage().sendMessage(e.getPlayer());
         }
     }
 

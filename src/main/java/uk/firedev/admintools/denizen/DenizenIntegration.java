@@ -38,7 +38,7 @@ public class DenizenIntegration {
                 ScriptEvent.registerScriptEvent(new EMFCompetitionStartScriptEvent());
                 ScriptEvent.registerScriptEvent(new EMFCompetitionEndScriptEvent());
                 EMFItemExtensions.register();
-                Loggers.log(Level.INFO, AdminTools.getInstance().getLogger(), "Loaded bridge for 'EvenMoreFish'!");
+                Loggers.info(AdminTools.getInstance().getComponentLogger(), "Loaded bridge for 'EvenMoreFish'!");
             }
             if (pm.isPluginEnabled("CMI")) {
                 ScriptEvent.registerScriptEvent(new CMIPlayerVanishScriptEvent());
@@ -48,7 +48,7 @@ public class DenizenIntegration {
                 ScriptEvent.registerScriptEvent(new CMIPlayerAFKKickScriptEvent());
                 ScriptEvent.registerScriptEvent(new CMIPlayerAFKLeaveScriptEvent());
                 CMIPlayerExtensions.register();
-                Loggers.log(Level.INFO, AdminTools.getInstance().getLogger(), "Loaded bridge for 'CMI'!");
+                Loggers.info(AdminTools.getInstance().getComponentLogger(), "Loaded bridge for 'CMI'!");
             }
         }
     }

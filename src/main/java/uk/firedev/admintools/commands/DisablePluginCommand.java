@@ -4,12 +4,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import uk.firedev.admintools.AdminTools;
-import uk.firedev.admintools.config.MessageConfig;
 import uk.firedev.daisylib.libs.commandapi.CommandAPICommand;
 import uk.firedev.daisylib.libs.commandapi.CommandPermission;
 import uk.firedev.daisylib.libs.commandapi.arguments.Argument;
 import uk.firedev.daisylib.libs.commandapi.arguments.ArgumentSuggestions;
 import uk.firedev.daisylib.libs.commandapi.arguments.StringArgument;
+import uk.firedev.daisylib.message.component.ComponentMessage;
 
 import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
@@ -33,7 +33,7 @@ public class DisablePluginCommand extends CommandAPICommand {
             Plugin pl = pm.getPlugin(args[0]);
             if (pm.isPluginEnabled(pl)) {
                 pm.disablePlugin(pl);
-                MessageConfig.getInstance().sendPrefixedMessage(sender, "<red>Disabled " + pl.getName() + "</red>");
+                new ComponentMessage("<red>Disabled " + pl.getName() + "</red>").sendMessage(sender);
             }
         });
     }

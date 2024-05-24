@@ -55,19 +55,19 @@ public class AdminTools extends JavaPlugin implements Listener {
             mvCore = (MultiverseCore) pm.getPlugin("Multiverse-Core");
             ResourceAdminCommand.getInstance().register();
             pm.registerEvents(new ResourceAdminListener(), this);
-            Loggers.log(Level.INFO, getLogger(), "ResourceAdmin Command has been enabled!");
+            Loggers.info(getComponentLogger(), "ResourceAdmin Command has been enabled!");
         }
         if (pm.isPluginEnabled("PlotSquared")) {
             pm.registerEvents(new PreventMap(), this);
-            Loggers.log(Level.INFO, getLogger(), "Mapart Protection has been enabled!");
+            Loggers.info(getComponentLogger(), "Mapart Protection has been enabled!");
         }
         if (pm.isPluginEnabled("Jobs")) {
             pm.registerEvents(new JobsPlacePatch(), this);
-            Loggers.log(Level.INFO, getLogger(), "Jobs Place Patch has been enabled.");
+            Loggers.info(getComponentLogger(), "Jobs Place Patch has been enabled.");
             if (pm.isPluginEnabled("Denizen")) {
                 pm.registerEvents(new DenizenNoPaymentFlag(), this);
                 pm.registerEvents(new DenizenKillLimiter(), this);
-                Loggers.log(Level.INFO, getLogger(), "Denizen Jobs Hooks have been enabled.");
+                Loggers.info(getComponentLogger(), "Denizen Jobs Hooks have been enabled.");
             }
         }
         new RewardLoader().load();
