@@ -45,7 +45,7 @@ public class MessageConfig extends uk.firedev.daisylib.Config {
                 .applyReplacer(getPrefixReplacer());
     }
 
-    // RESOURCEADMIN MESSAGES
+    // WORLDMANAGER MESSAGES
 
     public ComponentMessage getWorldManagerUsageMessage() {
         String def = String.join("\n", List.of(

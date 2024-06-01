@@ -10,7 +10,6 @@ public class MainConfig extends uk.firedev.daisylib.Config {
 
     public boolean isPlaceBreakEnabled() { return getConfig().getBoolean("hooks.jobs.place-break.enable-patch", false); }
     public List<String> getPlaceBreakBypassWorlds() { return getConfig().getStringList("hooks.jobs.place-break.world-bypass"); }
-    public boolean isResourcePreGenerate() { return getConfig().getBoolean("resourceadmin.pre-generate", false); }
     public boolean preventCustomItemMending() { return getConfig().getBoolean("hooks.custom-items.prevent-mending", false); }
     public boolean preventCustomItemFurnaceFuel() { return getConfig().getBoolean("hooks.custom-items.prevent-furnace-fuel", true); }
     public boolean preventMapsInNonOwnerPlots() { return getConfig().getBoolean("hooks.plotsquared.prevent-maps-for-non-owners", true); }
