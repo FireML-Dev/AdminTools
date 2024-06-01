@@ -10,8 +10,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.Nullable;
 import uk.firedev.admintools.commands.AdminToolsCommand;
 import uk.firedev.admintools.commands.DisablePluginCommand;
-import uk.firedev.admintools.commands.resourceadmin.ResourceAdminCommand;
-import uk.firedev.admintools.commands.resourceadmin.ResourceAdminListener;
 import uk.firedev.admintools.config.MainConfig;
 import uk.firedev.admintools.config.MessageConfig;
 import uk.firedev.admintools.denizen.DenizenIntegration;
