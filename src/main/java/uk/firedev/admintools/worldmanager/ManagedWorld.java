@@ -178,7 +178,7 @@ public class ManagedWorld {
             }
             if (getBorderSize() > 1) {
                 world.getWorldBorder().setCenter(0, 0);
-                world.getWorldBorder().setSize(16000);
+                world.getWorldBorder().setSize(getBorderSize());
             }
             world.setDifficulty(getDifficulty());
             if (isPreGenerate()) {

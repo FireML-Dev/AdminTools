@@ -65,7 +65,7 @@ public class ResourceAdminCommand extends CommandAPICommand {
                 });
     }
 
-    public final MVWorldManager worldManager = AdminTools.getInstance().mvCore.getMVWorldManager();
+    public final MVWorldManager worldManager = AdminTools.getInstance().getMultiverseWorldManager();
     private final List<UUID> deleteConfirmation = new ArrayList<>();
 
     private void deleteWorlds(CommandSender sender) {
