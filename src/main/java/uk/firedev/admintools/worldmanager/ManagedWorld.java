@@ -126,7 +126,8 @@ public class ManagedWorld {
         World world = getWorld();
         if (world != null) {
             if (world.getEnderDragonBattle() != null) { world.getEnderDragonBattle().getBossBar().removeAll(); }
-            final ComponentMessage message = MessageConfig.getInstance().getResourceAdminDeleteEvacMessage();
+            final ComponentReplacer replacer = new ComponentReplacer().addReplacement("world", world.getName());
+            final ComponentMessage message = MessageConfig.getInstance().getWorldManagerEvacuationMessage().applyReplacer(replacer);
             final Location evacLocation = WorldManagerConfig.getInstance().getEvacuationLocation();
             world.getPlayers().forEach(p -> {
                 Location respawnLoc = p.getRespawnLocation();
@@ -143,14 +144,13 @@ public class ManagedWorld {
             worldManager.deleteWorld(world.getName());
             getPostDeletionCommands().forEach(command -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command));
             if (audience != null) {
-                ComponentReplacer replacer = new ComponentReplacer().addReplacement("world", world.getName());
-                MessageConfig.getInstance().getResourceAdminDeleteSuccessMessage().applyReplacer(replacer).sendMessage(audience);
+                MessageConfig.getInstance().getWorldManagerDeletedMessage().applyReplacer(replacer).sendMessage(audience);
             }
             return true;
         } else {
             if (audience != null) {
                 ComponentReplacer replacer = new ComponentReplacer().addReplacement("world", this.name);
-                MessageConfig.getInstance().getResourceAdminDeleteNullWorldMessage().applyReplacer(replacer).sendMessage(audience);
+                MessageConfig.getInstance().getWorldManagerNullWorldMessage().applyReplacer(replacer).sendMessage(audience);
             }
             return false;
         }
@@ -188,13 +188,13 @@ public class ManagedWorld {
             }
             if (audience != null) {
                 ComponentReplacer replacer = new ComponentReplacer().addReplacement("world", world.getName());
-                MessageConfig.getInstance().getResourceAdminSetupCreatedMessage().applyReplacer(replacer).sendMessage(audience);
+                MessageConfig.getInstance().getWorldManagerCreatedMessage().applyReplacer(replacer).sendMessage(audience);
             }
             return true;
         } else {
             if (audience != null) {
                 ComponentReplacer replacer = new ComponentReplacer().addReplacement("world", world.getName());
-                MessageConfig.getInstance().getResourceAdminSetupExistsMessage().applyReplacer(replacer).sendMessage(audience);
+                MessageConfig.getInstance().getWorldManagerExistsMessage().applyReplacer(replacer).sendMessage(audience);
             }
             return false;
         }

@@ -5,24 +5,17 @@ messages:
     usage: |-
       "{prefix}<color:#F0E68C>Usage:"
       "{prefix}<aqua>/admintools reload"
-  resource-admin:
+  world-manager:
     usage: |-
-      "{prefix}<green>ResourceAdmin Usage:</green>"
-      "{prefix}<color:#F0E68C>/resourceadmin delete</color>"
-      "{prefix}<color:#F0E68C>/resourceadmin setup</color>"
-    setup:
-      border: "<green>World {world}'s border has been set</green>"
-      difficulty: "<green>World {world}'s difficulty has been set</green>"
-      exists: "<red>World {world} already exists! Skipping...</red>"
-      created: "<green>World {world} has been created</green>"
-      complete: "<green>Resource Setup Complete!</green>"
-    delete:
-      confirm: "<red>Type this command again to confirm.</red>"
-      starting: "<color:#F0E68C>Resource Deletion Starting...</color>"
-      evac: "<gold>Resource is resetting. You have been teleported to Spawn.</gold>"
-      null: "<red>World {world} is null! Skipping...</red>"
-      success: "<green>World {world} has been deleted.</green>"
-      complete: "<green>Resource Deletion Complete!</green>"
+      {prefix}<green>WorldManager Usage:</green>
+      {prefix}<color:#F0E68C>/worldmanager delete [managedWorld]</color>
+      {prefix}<color:#F0E68C>/worldmanager create [managedWorld]</color>
+    exists: "<red>World {world} already exists! Skipping...</red>"
+    created: "<green>World {world} has been created</green>"
+    evacuation: "<gold>This world is resetting. You have been teleported to an evacuation location.</gold>"
+    confirm: "<red>Type this command again to confirm deletion of {world}.</red>"
+    null: "<red>World {world} is null! Skipping...</red>"
+    deleted: "<green>World {world} has been deleted.</green>"
   mending-prevention:
     denied: "<red>You cannot apply mending to custom items!</red>"
   mapart-protection:

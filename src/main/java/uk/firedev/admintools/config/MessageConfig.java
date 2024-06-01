@@ -47,68 +47,43 @@ public class MessageConfig extends uk.firedev.daisylib.Config {
 
     // RESOURCEADMIN MESSAGES
 
-    public ComponentMessage getResourceAdminUsageMessage() {
+    public ComponentMessage getWorldManagerUsageMessage() {
         String def = String.join("\n", List.of(
-                "{prefix}<green>ResourceAdmin Usage:</green>",
-                "{prefix}<color:#F0E68C>/resourceadmin delete</color>",
-                "{prefix}<color:#F0E68C>/resourceadmin setup</color>"
+                "{prefix}<green>WorldManager Usage:</green>",
+                "{prefix}<color:#F0E68C>/worldmanager delete [managedWorld]</color>",
+                "{prefix}<color:#F0E68C>/worldmanager create [managedWorld]</color>"
         ));
-        return new ComponentMessage(getConfig(), "messages.resource-admin.usage", def)
+        return new ComponentMessage(getConfig(), "messages.world-manager.usage", def)
                 .applyReplacer(getPrefixReplacer());
     }
 
-    public ComponentMessage getResourceAdminSetupBorderMessage() {
-        return new ComponentMessage(getConfig(), "messages.resource-admin.setup.border", "<green>World {world}'s border has been set</green>")
+    public ComponentMessage getWorldManagerExistsMessage() {
+        return new ComponentMessage(getConfig(), "messages.world-manager.exists", "<red>World {world} already exists! Skipping...</red>")
                 .applyReplacer(getPrefixReplacer());
     }
 
-    public ComponentMessage getResourceAdminSetupDifficultyMessage() {
-        return new ComponentMessage(getConfig(), "messages.resource-admin.setup.difficulty", "<green>World {world}'s difficulty has been set</green>")
+    public ComponentMessage getWorldManagerCreatedMessage() {
+        return new ComponentMessage(getConfig(), "messages.world-manager.created", "<green>World {world} has been created</green>")
                 .applyReplacer(getPrefixReplacer());
     }
 
-    public ComponentMessage getResourceAdminSetupExistsMessage() {
-        return new ComponentMessage(getConfig(), "messages.resource-admin.setup.exists", "<red>World {world} already exists! Skipping...</red>")
+    public ComponentMessage getWorldManagerEvacuationMessage() {
+        return new ComponentMessage(getConfig(), "messages.world-manager.evacuation", "<gold>This world is resetting. You have been teleported to an evacuation location.</gold>")
                 .applyReplacer(getPrefixReplacer());
     }
 
-    public ComponentMessage getResourceAdminSetupCreatedMessage() {
-        return new ComponentMessage(getConfig(), "messages.resource-admin.setup.created", "<green>World {world} has been created</green>")
+    public ComponentMessage getWorldManagerConfirmMessage() {
+        return new ComponentMessage(getConfig(), "messages.world-manager.confirm", "<red>Type this command again to confirm deletion of {world}.</red>")
                 .applyReplacer(getPrefixReplacer());
     }
 
-    public ComponentMessage getResourceAdminSetupCompleteMessage() {
-        return new ComponentMessage(getConfig(), "messages.resource-admin.setup.complete", "<green>Resource Setup Complete!</green>")
+    public ComponentMessage getWorldManagerNullWorldMessage() {
+        return new ComponentMessage(getConfig(), "messages.world-manager.null", "<red>World {world} is null! Skipping...</red>")
                 .applyReplacer(getPrefixReplacer());
     }
 
-    public ComponentMessage getResourceAdminDeleteConfirmMessage() {
-        return new ComponentMessage(getConfig(), "messages.resource-admin.delete.confirm", "<red>Type this command again to confirm.</red>")
-                .applyReplacer(getPrefixReplacer());
-    }
-
-    public ComponentMessage getResourceAdminDeleteStartingMessage() {
-        return new ComponentMessage(getConfig(), "messages.resource-admin.delete.starting", "<color:#F0E68C>Resource Deletion Starting...</color>")
-                .applyReplacer(getPrefixReplacer());
-    }
-
-    public ComponentMessage getResourceAdminDeleteEvacMessage() {
-        return new ComponentMessage(getConfig(), "messages.resource-admin.delete.evac", "<gold>Resource is resetting. You have been teleported to Spawn.</gold>")
-                .applyReplacer(getPrefixReplacer());
-    }
-
-    public ComponentMessage getResourceAdminDeleteNullWorldMessage() {
-        return new ComponentMessage(getConfig(), "messages.resource-admin.delete.null", "<red>World {world} is null! Skipping...</red>")
-                .applyReplacer(getPrefixReplacer());
-    }
-
-    public ComponentMessage getResourceAdminDeleteSuccessMessage() {
-        return new ComponentMessage(getConfig(), "messages.resource-admin.delete.success", "<green>World {world} has been deleted.</green>")
-                .applyReplacer(getPrefixReplacer());
-    }
-
-    public ComponentMessage getResourceAdminDeleteCompleteMessage() {
-        return new ComponentMessage(getConfig(), "messages.resource-admin.delete.complete", "<green>Resource Deletion Complete!</green>")
+    public ComponentMessage getWorldManagerDeletedMessage() {
+        return new ComponentMessage(getConfig(), "messages.world-manager.deleted", "<green>World {world} has been deleted.</green>")
                 .applyReplacer(getPrefixReplacer());
     }
 

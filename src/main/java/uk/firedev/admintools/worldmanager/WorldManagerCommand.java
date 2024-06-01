@@ -1,16 +1,25 @@
 package uk.firedev.admintools.worldmanager;
 
+import org.bukkit.entity.Player;
+import uk.firedev.admintools.AdminTools;
+import uk.firedev.admintools.config.MessageConfig;
 import uk.firedev.daisylib.libs.commandapi.CommandAPICommand;
 import uk.firedev.daisylib.libs.commandapi.CommandPermission;
 import uk.firedev.daisylib.libs.commandapi.arguments.Argument;
 import uk.firedev.daisylib.libs.commandapi.arguments.ArgumentSuggestions;
 import uk.firedev.daisylib.libs.commandapi.arguments.StringArgument;
+import uk.firedev.daisylib.message.component.ComponentReplacer;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 public class WorldManagerCommand extends CommandAPICommand {
 
     private static WorldManagerCommand instance;
+
+    private List<UUID> deleteConfirmList = new ArrayList<>();
 
     private WorldManagerCommand() {
         super("worldmanager");
@@ -18,6 +27,9 @@ public class WorldManagerCommand extends CommandAPICommand {
         withShortDescription("Manage worlds");
         withFullDescription("Manage worlds");
         withSubcommands(getDeleteCommand(), getCreateCommand());
+        executes((sender, arguments) -> {
+            MessageConfig.getInstance().getWorldManagerUsageMessage().sendMessage(sender);
+        });
     }
 
     private CommandAPICommand getDeleteCommand() {
@@ -27,8 +39,23 @@ public class WorldManagerCommand extends CommandAPICommand {
                     String[] args = arguments.rawArgs();
                     ManagedWorld managedWorld = WorldManagerConfig.getInstance().getLoadedManagedWorlds().get(args[0]);
                     if (managedWorld == null) {
-                        // TODO not exists message
+                        final ComponentReplacer replacer = new ComponentReplacer().addReplacement("world", args[0]);
+                        MessageConfig.getInstance().getWorldManagerNullWorldMessage().applyReplacer(replacer).sendMessage(sender);
                         return;
+                    }
+                    if (sender instanceof Player player) {
+                        if (deleteConfirmList == null) {
+                            deleteConfirmList = new ArrayList<>();
+                        }
+                        UUID uuid = player.getUniqueId();
+                        if (!deleteConfirmList.contains(uuid)) {
+                            deleteConfirmList.add(uuid);
+                            final ComponentReplacer replacer = new ComponentReplacer().addReplacement("world", managedWorld.getName());
+                            MessageConfig.getInstance().getWorldManagerConfirmMessage().applyReplacer(replacer).sendMessage(player);
+                            AdminTools.getScheduler().runTaskLater(() -> deleteConfirmList.remove(uuid), 100L);
+                            return;
+                        }
+                        deleteConfirmList.remove(uuid);
                     }
                     managedWorld.deleteWorld(sender);
                 });
@@ -41,7 +68,8 @@ public class WorldManagerCommand extends CommandAPICommand {
                     String[] args = arguments.rawArgs();
                     ManagedWorld managedWorld = WorldManagerConfig.getInstance().getLoadedManagedWorlds().get(args[0]);
                     if (managedWorld == null) {
-                        // TODO not exists message
+                        final ComponentReplacer replacer = new ComponentReplacer().addReplacement("world", args[0]);
+                        MessageConfig.getInstance().getWorldManagerNullWorldMessage().applyReplacer(replacer).sendMessage(sender);
                         return;
                     }
                     managedWorld.createWorld(sender);
