@@ -16,7 +16,6 @@ public class MainConfig extends uk.firedev.daisylib.Config {
 
     private MainConfig() {
         super("config.yml", AdminTools.getInstance(), true, true);
-        instance = this;
     }
 
     public static MainConfig getInstance() {
