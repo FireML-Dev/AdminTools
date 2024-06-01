@@ -77,6 +77,18 @@ public class ManagedWorld {
         this.postDeletionCommands = postDeletion.stream().map(replacer::replace).toList();
     }
 
+    public ManagedWorld(@NotNull String name, boolean preGenerate, int borderSize, @NotNull Difficulty difficulty, @NotNull World.Environment environment, @NotNull List<String> preCreationCommands, @NotNull List<String> postCreationCommands, @NotNull List<String> preDeletionCommands, @NotNull List<String> postDeletionCommands) {
+        this.name = name;
+        this.preGenerate = preGenerate;
+        this.borderSize = borderSize;
+        this.difficulty = difficulty;
+        this.environment = environment;
+        this.preCreationCommands = preCreationCommands;
+        this.postCreationCommands = postCreationCommands;
+        this.preDeletionCommands = preDeletionCommands;
+        this.postDeletionCommands = postDeletionCommands;
+    }
+
     public @NotNull String getName() {
         return this.name;
     }
