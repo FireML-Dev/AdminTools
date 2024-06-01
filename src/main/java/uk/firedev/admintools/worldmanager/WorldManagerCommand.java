@@ -26,7 +26,7 @@ public class WorldManagerCommand extends CommandAPICommand {
         withPermission(CommandPermission.fromString("admintools.command.worldmanager"));
         withShortDescription("Manage worlds");
         withFullDescription("Manage worlds");
-        withSubcommands(getDeleteCommand(), getCreateCommand());
+        withSubcommands(getDeleteCommand(), getDeleteAllCommand(), getCreateCommand(), getCreateAllCommand());
         executes((sender, arguments) -> {
             MessageConfig.getInstance().getWorldManagerUsageMessage().sendMessage(sender);
         });
@@ -73,6 +73,34 @@ public class WorldManagerCommand extends CommandAPICommand {
                         return;
                     }
                     managedWorld.createWorld(sender);
+                });
+    }
+
+    private CommandAPICommand getCreateAllCommand() {
+        return new CommandAPICommand("createAll")
+                .executes((sender, arguments) -> {
+                    WorldManagerConfig.getInstance().getLoadedManagedWorlds().forEach((name, managedWorld) -> managedWorld.createWorld(sender));
+                });
+    }
+
+    private CommandAPICommand getDeleteAllCommand() {
+        return new CommandAPICommand("deleteAll")
+                .executes((sender, arguments) -> {
+                    if (sender instanceof Player player) {
+                        if (deleteConfirmList == null) {
+                            deleteConfirmList = new ArrayList<>();
+                        }
+                        UUID uuid = player.getUniqueId();
+                        if (!deleteConfirmList.contains(uuid)) {
+                            deleteConfirmList.add(uuid);
+                            final ComponentReplacer replacer = new ComponentReplacer().addReplacement("world", "<red>ALL CONFIGURED WORLDS");
+                            MessageConfig.getInstance().getWorldManagerConfirmMessage().applyReplacer(replacer).sendMessage(player);
+                            AdminTools.getScheduler().runTaskLater(() -> deleteConfirmList.remove(uuid), 100L);
+                            return;
+                        }
+                        deleteConfirmList.remove(uuid);
+                    }
+                    WorldManagerConfig.getInstance().getLoadedManagedWorlds().forEach((name, managedWorld) -> managedWorld.deleteWorld(sender));
                 });
     }
 
