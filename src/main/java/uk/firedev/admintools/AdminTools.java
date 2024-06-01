@@ -1,15 +1,15 @@
 package uk.firedev.admintools;
 
 import com.onarandombox.MultiverseCore.MultiverseCore;
+import com.onarandombox.MultiverseCore.api.MVWorldManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerLoadEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.Nullable;
 import uk.firedev.admintools.commands.AdminToolsCommand;
 import uk.firedev.admintools.commands.DisablePluginCommand;
-import uk.firedev.admintools.commands.resourceadmin.ResourceAdminCommand;
-import uk.firedev.admintools.commands.resourceadmin.ResourceAdminListener;
 import uk.firedev.admintools.config.MainConfig;
 import uk.firedev.admintools.config.MessageConfig;
 import uk.firedev.admintools.denizen.DenizenIntegration;
@@ -20,6 +20,8 @@ import uk.firedev.admintools.listeners.CustomItemProtection;
 import uk.firedev.admintools.listeners.MendingPrevention;
 import uk.firedev.admintools.plotsquared.PreventMap;
 import uk.firedev.admintools.reward.RewardLoader;
+import uk.firedev.admintools.worldmanager.WorldManagerCommand;
+import uk.firedev.admintools.worldmanager.WorldManagerConfig;
 import uk.firedev.daisylib.Loggers;
 import uk.firedev.daisylib.libs.Anon8281.universalScheduler.UniversalScheduler;
 import uk.firedev.daisylib.libs.Anon8281.universalScheduler.scheduling.schedulers.TaskScheduler;
@@ -31,7 +33,7 @@ public class AdminTools extends JavaPlugin implements Listener {
     private static AdminTools instance;
     private static TaskScheduler scheduler;
 
-    public MultiverseCore mvCore = null;
+    private MultiverseCore mvCore = null;
 
     @Override
     public void onEnable() {
@@ -53,9 +55,9 @@ public class AdminTools extends JavaPlugin implements Listener {
         }
         if (pm.isPluginEnabled("Multiverse-Core")) {
             mvCore = (MultiverseCore) pm.getPlugin("Multiverse-Core");
-            ResourceAdminCommand.getInstance().register();
-            pm.registerEvents(new ResourceAdminListener(), this);
-            Loggers.info(getComponentLogger(), "ResourceAdmin Command has been enabled!");
+            WorldManagerConfig.getInstance().reload();
+            WorldManagerCommand.getInstance().register();
+            Loggers.info(getComponentLogger(), "WorldManager Command has been enabled!");
         }
         if (pm.isPluginEnabled("PlotSquared")) {
             pm.registerEvents(new PreventMap(), this);
@@ -74,9 +76,12 @@ public class AdminTools extends JavaPlugin implements Listener {
     }
 
     public void reload() {
-        this.reloadConfig();
         MainConfig.getInstance().reload();
         MessageConfig.getInstance().reload();
+        if (mvCore != null) {
+            WorldManagerConfig.getInstance().reload();
+            WorldManagerConfig.getInstance().populateManagedWorldMap();
+        }
     }
 
     private void loadCommands() {
@@ -94,5 +99,12 @@ public class AdminTools extends JavaPlugin implements Listener {
     public static AdminTools getInstance() { return instance; }
 
     public static TaskScheduler getScheduler() { return scheduler; }
+
+    public @Nullable MVWorldManager getMultiverseWorldManager() {
+        if (mvCore == null) {
+            return null;
+        }
+        return mvCore.getMVWorldManager();
+    }
 
 }
