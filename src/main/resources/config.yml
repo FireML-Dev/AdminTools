@@ -10,5 +10,3 @@ hooks:
   plotsquared:
     # Stops players who aren't a member/owner of the plot from making maps of it
     prevent-maps-for-non-owners: true
-resourceadmin:
-  pre-generate: false

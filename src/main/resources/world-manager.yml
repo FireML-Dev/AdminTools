@@ -1,0 +1,73 @@
+# Teleport location if a player doesn't have a respawn point.
+# If this is not a valid location, or the location is unsafe, the players will be kicked from the server instead.
+evacuation:
+  kick-message: "<aqua>Unable to find a safe evacuation point. You have been removed from the server."
+  world: []
+  x: []
+  y: []
+  z: []
+  yaw: []
+  pitch: []
+
+# These commands are executed by console.
+global-creation-commands:
+  pre-commands: []
+  post-commands: []
+
+# These commands are executed by console.
+global-deletion-commands:
+  pre-commands:
+    - "adminwarps purge {world}"
+  post-commands: []
+
+# Configure worlds to be affected
+worlds:
+  Resource:
+    # Should the world be pre-generated after creation?
+    # Requires the Chunky plugin to work.
+    pre-generate: true
+
+    # Size of the world border
+    border-size: 16000
+
+    # Customize the world's difficulty
+    # https://jd.papermc.io/paper/1.20.6/org/bukkit/Difficulty.html
+    difficulty: HARD
+
+    # Choose the world's environment
+    # https://jd.papermc.io/paper/1.20.6/org/bukkit/World.Environment.html
+    environment: OVERWORLD
+
+    # These commands are executed by console.
+    creation-commands:
+      pre-commands: []
+      post-commands: []
+
+    # These commands are executed by console.
+    deletion-commands:
+      pre-commands: []
+      post-commands: []
+
+  Resource_nether:
+    pre-generate: true
+    border-size: 16000
+    difficulty: HARD
+    environment: NETHER
+    creation-commands:
+      pre-commands: []
+      post-commands: []
+    deletion-commands:
+      pre-commands: []
+      post-commands: []
+
+  Resource_the_end:
+    pre-generate: true
+    border-size: 16000
+    difficulty: HARD
+    environment: THE_END
+    creation-commands:
+      pre-commands: []
+      post-commands: []
+    deletion-commands:
+      pre-commands: []
+      post-commands: []
