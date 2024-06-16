@@ -151,9 +151,9 @@
         <dependency>
             <groupId>Jobs</groupId>
             <artifactId>jobs</artifactId>
-            <version>5.2.2.5</version>
+            <version>5.2.3.1</version>
             <scope>system</scope>
-            <systemPath>${basedir}/libs/Jobs5.2.2.5.jar</systemPath>
+            <systemPath>${basedir}/libs/Jobs5.2.3.1.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>CMILib</groupId>
