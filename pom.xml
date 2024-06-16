@@ -158,9 +158,9 @@
         <dependency>
             <groupId>CMILib</groupId>
             <artifactId>CMILib</artifactId>
-            <version>1.4.6.3</version>
+            <version>1.4.7.16</version>
             <scope>system</scope>
-            <systemPath>${basedir}/libs/CMILib1.4.6.3.jar</systemPath>
+            <systemPath>${basedir}/libs/CMILib1.4.7.16.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.intellectualsites.plotsquared</groupId>
