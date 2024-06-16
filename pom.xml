@@ -119,9 +119,9 @@
         <dependency>
             <groupId>com.oheers</groupId>
             <artifactId>EvenMoreFish</artifactId>
-            <version>1.6.11.17</version>
+            <version>1.7</version>
             <scope>system</scope>
-            <systemPath>${basedir}/libs/even-more-fish-1.6.11.17.jar</systemPath>
+            <systemPath>${basedir}/libs/even-more-fish-1.7.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.denizenscript</groupId>
