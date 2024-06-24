@@ -111,12 +111,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>CMI-API</groupId>
-            <artifactId>CMI-API</artifactId>
-            <version>9.7.0.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>com.oheers</groupId>
             <artifactId>EvenMoreFish</artifactId>
             <version>1.6.11.17</version>
