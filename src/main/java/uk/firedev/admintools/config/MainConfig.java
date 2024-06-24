@@ -25,4 +25,12 @@ public class MainConfig extends uk.firedev.daisylib.Config {
         return instance;
     }
 
+    public boolean isDenizenDaisyLibHook() {
+        return getConfig().getBoolean("hooks.denizen.daisylib");
+    }
+
+    public boolean isDenizenEMFHook() {
+        return getConfig().getBoolean("hooks.denizen.evenmorefish");
+    }
+
 }

@@ -25,7 +25,7 @@ import uk.firedev.daisylib.Loggers;
 import uk.firedev.daisylib.libs.Anon8281.universalScheduler.UniversalScheduler;
 import uk.firedev.daisylib.libs.Anon8281.universalScheduler.scheduling.schedulers.TaskScheduler;
 
-public class AdminTools extends JavaPlugin implements Listener {
+public class AdminTools extends JavaPlugin {
 
     private static AdminTools instance;
     private static TaskScheduler scheduler;
@@ -37,6 +37,7 @@ public class AdminTools extends JavaPlugin implements Listener {
         instance = this;
         scheduler = UniversalScheduler.getScheduler(this);
         reload();
+        loadHooks();
         loadCommands();
         registerEvents();
     }
@@ -44,8 +45,7 @@ public class AdminTools extends JavaPlugin implements Listener {
     @Override
     public void onDisable() {}
 
-    @EventHandler
-    private void onServerLoad(ServerLoadEvent event) {
+    private void loadHooks() {
         PluginManager pm = this.getServer().getPluginManager();
         if (pm.isPluginEnabled("Denizen")) {
             DenizenIntegration.setup();
@@ -84,7 +84,6 @@ public class AdminTools extends JavaPlugin implements Listener {
 
     private void registerEvents() {
         PluginManager pm = this.getServer().getPluginManager();
-        pm.registerEvents(this, this);
         pm.registerEvents(new MendingPrevention(), this);
         pm.registerEvents(new CustomItemProtection(), this);
     }

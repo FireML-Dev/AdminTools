@@ -5,5 +5,9 @@ hooks:
   jobs:
     place-break:
       enable-patch: false
-      world-bypass:
-        - Mapart
+      world-bypass: []
+  denizen:
+    # Enable the DaisyLib hook?
+    daisylib: true
+    # Enable the EvenMoreFish hook?
+    evenmorefish: true
