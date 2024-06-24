@@ -56,7 +56,7 @@ public class AdminTools extends JavaPlugin implements Listener {
         if (pm.isPluginEnabled("Multiverse-Core")) {
             mvCore = (MultiverseCore) pm.getPlugin("Multiverse-Core");
             WorldManagerConfig.getInstance().reload();
-            WorldManagerCommand.getInstance().register();
+            WorldManagerCommand.getInstance().register(this);
             Loggers.info(getComponentLogger(), "WorldManager Command has been enabled!");
         }
         if (pm.isPluginEnabled("PlotSquared")) {
@@ -85,8 +85,8 @@ public class AdminTools extends JavaPlugin implements Listener {
     }
 
     private void loadCommands() {
-        AdminToolsCommand.getInstance().register();
-        DisablePluginCommand.getInstance().register();
+        AdminToolsCommand.getInstance().register(this);
+        DisablePluginCommand.getInstance().register(this);
     }
 
     private void registerEvents() {
