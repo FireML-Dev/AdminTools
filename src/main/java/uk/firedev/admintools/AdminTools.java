@@ -18,15 +18,12 @@ import uk.firedev.admintools.jobs.DenizenNoPaymentFlag;
 import uk.firedev.admintools.jobs.JobsPlacePatch;
 import uk.firedev.admintools.listeners.CustomItemProtection;
 import uk.firedev.admintools.listeners.MendingPrevention;
-import uk.firedev.admintools.plotsquared.PreventMap;
 import uk.firedev.admintools.reward.RewardLoader;
 import uk.firedev.admintools.worldmanager.WorldManagerCommand;
 import uk.firedev.admintools.worldmanager.WorldManagerConfig;
 import uk.firedev.daisylib.Loggers;
 import uk.firedev.daisylib.libs.Anon8281.universalScheduler.UniversalScheduler;
 import uk.firedev.daisylib.libs.Anon8281.universalScheduler.scheduling.schedulers.TaskScheduler;
-
-import java.util.logging.Level;
 
 public class AdminTools extends JavaPlugin implements Listener {
 
@@ -58,10 +55,6 @@ public class AdminTools extends JavaPlugin implements Listener {
             WorldManagerConfig.getInstance().reload();
             WorldManagerCommand.getInstance().register();
             Loggers.info(getComponentLogger(), "WorldManager Command has been enabled!");
-        }
-        if (pm.isPluginEnabled("PlotSquared")) {
-            pm.registerEvents(new PreventMap(), this);
-            Loggers.info(getComponentLogger(), "Mapart Protection has been enabled!");
         }
         if (pm.isPluginEnabled("Jobs")) {
             pm.registerEvents(new JobsPlacePatch(), this);
