@@ -10,9 +10,6 @@ dependencies:
     DaisyLib:
       required: true
       load: BEFORE
-    CMI:
-      required: false
-      load: BEFORE
     EvenMoreFish:
       required: false
       load: BEFORE

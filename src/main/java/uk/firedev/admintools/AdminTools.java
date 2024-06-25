@@ -2,9 +2,6 @@ package uk.firedev.admintools;
 
 import com.onarandombox.MultiverseCore.MultiverseCore;
 import com.onarandombox.MultiverseCore.api.MVWorldManager;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.server.ServerLoadEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.Nullable;
@@ -13,7 +10,6 @@ import uk.firedev.admintools.commands.DisablePluginCommand;
 import uk.firedev.admintools.config.MainConfig;
 import uk.firedev.admintools.config.MessageConfig;
 import uk.firedev.admintools.denizen.DenizenIntegration;
-import uk.firedev.admintools.jobs.DenizenKillLimiter;
 import uk.firedev.admintools.jobs.DenizenNoPaymentFlag;
 import uk.firedev.admintools.jobs.JobsPlacePatch;
 import uk.firedev.admintools.listeners.CustomItemProtection;
@@ -61,7 +57,6 @@ public class AdminTools extends JavaPlugin {
             Loggers.info(getComponentLogger(), "Jobs Place Patch has been enabled.");
             if (pm.isPluginEnabled("Denizen")) {
                 pm.registerEvents(new DenizenNoPaymentFlag(), this);
-                pm.registerEvents(new DenizenKillLimiter(), this);
                 Loggers.info(getComponentLogger(), "Denizen Jobs Hooks have been enabled.");
             }
         }
