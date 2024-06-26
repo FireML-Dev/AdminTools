@@ -10,7 +10,6 @@ import uk.firedev.admintools.commands.DisablePluginCommand;
 import uk.firedev.admintools.config.MainConfig;
 import uk.firedev.admintools.config.MessageConfig;
 import uk.firedev.admintools.denizen.DenizenIntegration;
-import uk.firedev.admintools.jobs.DenizenNoPaymentFlag;
 import uk.firedev.admintools.jobs.JobsPlacePatch;
 import uk.firedev.admintools.listeners.CustomItemProtection;
 import uk.firedev.admintools.listeners.MendingPrevention;
@@ -55,10 +54,6 @@ public class AdminTools extends JavaPlugin {
         if (pm.isPluginEnabled("Jobs")) {
             pm.registerEvents(new JobsPlacePatch(), this);
             Loggers.info(getComponentLogger(), "Jobs Place Patch has been enabled.");
-            if (pm.isPluginEnabled("Denizen")) {
-                pm.registerEvents(new DenizenNoPaymentFlag(), this);
-                Loggers.info(getComponentLogger(), "Denizen Jobs Hooks have been enabled.");
-            }
         }
         new RewardLoader().load();
     }

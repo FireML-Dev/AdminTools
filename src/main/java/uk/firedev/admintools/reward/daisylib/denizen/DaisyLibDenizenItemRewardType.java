@@ -10,8 +10,6 @@ import uk.firedev.daisylib.Loggers;
 import uk.firedev.daisylib.utils.ItemUtils;
 import uk.firedev.daisylib.utils.ObjectUtils;
 
-import java.util.logging.Level;
-
 public class DaisyLibDenizenItemRewardType implements uk.firedev.daisylib.reward.RewardType {
 
     @Override

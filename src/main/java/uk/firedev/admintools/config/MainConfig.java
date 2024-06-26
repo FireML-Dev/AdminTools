@@ -1,9 +1,6 @@
 package uk.firedev.admintools.config;
 
-import org.bukkit.entity.EntityType;
-import org.jetbrains.annotations.Nullable;
 import uk.firedev.admintools.AdminTools;
-import uk.firedev.daisylib.message.component.ComponentMessage;
 
 import java.util.List;
 
