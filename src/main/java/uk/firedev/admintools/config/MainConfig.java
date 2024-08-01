@@ -8,12 +8,6 @@ public class MainConfig extends uk.firedev.daisylib.Config {
 
     private static MainConfig instance = null;
 
-    public boolean isPlaceBreakEnabled() { return getConfig().getBoolean("hooks.jobs.place-break.enable-patch", false); }
-    public List<String> getPlaceBreakBypassWorlds() { return getConfig().getStringList("hooks.jobs.place-break.world-bypass"); }
-    public boolean preventCustomItemMending() { return getConfig().getBoolean("hooks.custom-items.prevent-mending", false); }
-    public boolean preventCustomItemFurnaceFuel() { return getConfig().getBoolean("hooks.custom-items.prevent-furnace-fuel", true); }
-    public boolean preventMapsInNonOwnerPlots() { return getConfig().getBoolean("hooks.plotsquared.prevent-maps-for-non-owners", true); }
-
     private MainConfig() {
         super("config.yml", AdminTools.getInstance(), true, true);
     }
@@ -23,6 +17,37 @@ public class MainConfig extends uk.firedev.daisylib.Config {
             instance = new MainConfig();
         }
         return instance;
+    }
+
+    /// Denizen Hooks
+
+    public boolean isDenizenDaisyLibHook() {
+        return getConfig().getBoolean("hooks.denizen.daisylib");
+    }
+
+    public boolean isDenizenEMFHook() {
+        return getConfig().getBoolean("hooks.denizen.evenmorefish");
+    }
+
+    /// Jobs Reborn
+
+    // Place Break Patch
+    public boolean isJobsPlaceBreakEnabled() {
+        return getConfig().getBoolean("hooks.jobs.place-break.enable-patch");
+    }
+
+    public List<String> getJobsPlaceBreakBypassWorlds() {
+        return getConfig().getStringList("hooks.jobs.place-break.world-bypass");
+    }
+
+    /// Custom Items
+
+    public boolean isPreventCustomItemMending() {
+        return getConfig().getBoolean("hooks.custom-items.prevent-mending");
+    }
+
+    public boolean isPreventCustomItemFurnaceFuel() {
+        return getConfig().getBoolean("hooks.custom-items.prevent-furnace-fuel", true);
     }
 
 }

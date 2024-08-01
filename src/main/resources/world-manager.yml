@@ -16,15 +16,14 @@ global-creation-commands:
 
 # These commands are executed by console.
 global-deletion-commands:
-  pre-commands:
-    - "adminwarps purge {world}"
+  pre-commands: []
   post-commands: []
 
 # Configure worlds to be affected
 worlds:
   Resource:
     # Should the world be pre-generated after creation?
-    # Requires the Chunky plugin to work.
+    # Requires the Chunky plugin.
     pre-generate: true
 
     # Size of the world border

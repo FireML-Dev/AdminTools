@@ -11,7 +11,7 @@ public class CustomItemProtection implements Listener {
 
     @EventHandler
     public void onBurn(FurnaceBurnEvent e) {
-        if (!MainConfig.getInstance().preventCustomItemFurnaceFuel()) {
+        if (!MainConfig.getInstance().isPreventCustomItemFurnaceFuel()) {
             return;
         }
         if (ItemUtils.isCustomItem(e.getFuel())) {
@@ -21,7 +21,7 @@ public class CustomItemProtection implements Listener {
 
     @EventHandler
     public void onSmelt(FurnaceSmeltEvent e) {
-        if (!MainConfig.getInstance().preventCustomItemFurnaceFuel()) {
+        if (!MainConfig.getInstance().isPreventCustomItemFurnaceFuel()) {
             return;
         }
         if (ItemUtils.isCustomItem(e.getSource()) && !ItemUtils.isCustomItem(e.getResult())) {

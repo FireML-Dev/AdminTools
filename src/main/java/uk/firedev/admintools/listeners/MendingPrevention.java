@@ -16,7 +16,7 @@ public class MendingPrevention implements Listener {
 
     @EventHandler
     public void onMendingApply(InventoryClickEvent e) {
-        if (!MainConfig.getInstance().preventCustomItemMending()) {
+        if (!MainConfig.getInstance().isPreventCustomItemMending()) {
             return;
         }
         if (!(e.getClickedInventory() instanceof AnvilInventory inv) || !(e.getWhoClicked() instanceof Player p)) {
@@ -34,7 +34,7 @@ public class MendingPrevention implements Listener {
 
     @EventHandler
     public void onMend(PlayerItemMendEvent e) {
-        if (!MainConfig.getInstance().preventCustomItemMending()) {
+        if (!MainConfig.getInstance().isPreventCustomItemMending()) {
             return;
         }
         if (ItemUtils.isCustomItem(e.getItem())) {

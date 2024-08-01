@@ -5,8 +5,9 @@ hooks:
   jobs:
     place-break:
       enable-patch: false
-      world-bypass:
-        - Mapart
-  plotsquared:
-    # Stops players who aren't a member/owner of the plot from making maps of it
-    prevent-maps-for-non-owners: true
+      world-bypass: []
+  denizen:
+    # Enable the DaisyLib hook?
+    daisylib: true
+    # Enable the EvenMoreFish hook?
+    evenmorefish: true
