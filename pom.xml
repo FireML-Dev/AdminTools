@@ -70,8 +70,8 @@
 
     <repositories>
         <repository>
-            <id>firedev-snapshots</id>
-            <url>https://repo.firedev.uk/snapshots/</url>
+            <id>firedev-repo</id>
+            <url>https://repo.firedev.uk/repository/maven-public/</url>
         </repository>
         <repository>
             <id>papermc-repo</id>
