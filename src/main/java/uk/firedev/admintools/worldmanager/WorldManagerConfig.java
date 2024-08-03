@@ -1,14 +1,16 @@
 package uk.firedev.admintools.worldmanager;
 
 import org.bukkit.Location;
-import org.bukkit.configuration.ConfigurationSection;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import uk.firedev.admintools.AdminTools;
 import uk.firedev.daisylib.Config;
+import uk.firedev.daisylib.Loggers;
+import uk.firedev.daisylib.libs.boostedyaml.block.implementation.Section;
 import uk.firedev.daisylib.message.component.ComponentMessage;
 import uk.firedev.daisylib.utils.LocationHelper;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +22,7 @@ public class WorldManagerConfig extends Config {
     private Map<String, ManagedWorld> loadedManagedWorlds;
 
     private WorldManagerConfig() {
-        super("world-manager.yml", AdminTools.getInstance(), false, false);
+        super("world-manager.yml", "world-manager.yml", AdminTools.getInstance(), false);
     }
 
     public static WorldManagerConfig getInstance() {
@@ -36,12 +38,12 @@ public class WorldManagerConfig extends Config {
             loadedManagedWorlds = new HashMap<>();
         }
         loadedManagedWorlds.clear();
-        ConfigurationSection section = getConfig().getConfigurationSection("worlds");
+        Section section = getConfig().getSection("worlds");
         if (section == null) {
             return;
         }
-        section.getKeys(false).forEach(key -> {
-            ConfigurationSection worldSection = section.getConfigurationSection(key);
+        section.getRoutesAsStrings(false).forEach(key -> {
+            Section worldSection = section.getSection(key);
             if (worldSection != null) {
                 ManagedWorld managedWorld = new ManagedWorld(worldSection);
                 loadedManagedWorlds.put(managedWorld.getName(), managedWorld);
@@ -72,8 +74,12 @@ public class WorldManagerConfig extends Config {
 
     public void setEvacuationLocation(@NotNull Location location) {
         LocationHelper.addToConfig(getConfig(), "evacuation", location);
-        // Save to the file and reload.
-        saveToFile(true);
+        // Save to the file.
+        try {
+            getConfig().save();
+        } catch (IOException exception) {
+            Loggers.warn(AdminTools.getInstance().getComponentLogger(), "Could not save world manager evacuation location.");
+        }
     }
 
     public @Nullable Location getEvacuationLocation() {

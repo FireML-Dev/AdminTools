@@ -11,3 +11,6 @@ hooks:
     daisylib: true
     # Enable the EvenMoreFish hook?
     evenmorefish: true
+
+# DO NOT TOUCH THIS VALUE!!!
+config-version: 1

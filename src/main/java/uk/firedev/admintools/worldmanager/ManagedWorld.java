@@ -3,18 +3,19 @@ package uk.firedev.admintools.worldmanager;
 import com.onarandombox.MultiverseCore.api.MVWorldManager;
 import net.kyori.adventure.audience.Audience;
 import org.bukkit.*;
-import org.bukkit.configuration.ConfigurationSection;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import uk.firedev.admintools.AdminTools;
 import uk.firedev.admintools.config.MessageConfig;
 import uk.firedev.daisylib.Loggers;
+import uk.firedev.daisylib.libs.boostedyaml.block.implementation.Section;
 import uk.firedev.daisylib.message.component.ComponentMessage;
 import uk.firedev.daisylib.message.component.ComponentReplacer;
 import uk.firedev.daisylib.message.string.StringReplacer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ManagedWorld {
 
@@ -28,8 +29,8 @@ public class ManagedWorld {
     private final @NotNull List<String> preDeletionCommands;
     private final @NotNull List<String> postDeletionCommands;
 
-    public ManagedWorld(@NotNull ConfigurationSection section) {
-        this.name = section.getName();
+    public ManagedWorld(@NotNull Section section) {
+        this.name = Objects.requireNonNull(section.getNameAsString());
         this.preGenerate = section.getBoolean("pre-generate");
         this.borderSize = section.getInt("border-size", 0);
         try {

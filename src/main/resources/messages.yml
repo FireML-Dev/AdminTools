@@ -1,22 +1,22 @@
-messages:
-  prefix: "<gray>[<aqua>AdminTools</aqua>]</gray> "
-  main-command:
-    reloaded: "{prefix}<color:#F0E68C>AdminTools Config Reloaded</color>"
-    usage: |-
-      "{prefix}<color:#F0E68C>Usage:"
-      "{prefix}<aqua>/admintools reload"
-  world-manager:
-    usage: |-
-      {prefix}<green>WorldManager Usage:</green>
-      {prefix}<color:#F0E68C>/worldmanager delete [managedWorld]</color>
-      {prefix}<color:#F0E68C>/worldmanager create [managedWorld]</color>
-    exists: "<red>World {world} already exists! Skipping...</red>"
-    created: "<green>World {world} has been created</green>"
-    evacuation: "<gold>This world is resetting. You have been teleported to an evacuation location.</gold>"
-    confirm: "<red>Type this command again to confirm deletion of {world}.</red>"
-    null: "<red>World {world} is null! Skipping...</red>"
-    deleted: "<green>World {world} has been deleted.</green>"
-  mending-prevention:
-    denied: "<red>You cannot apply mending to custom items!</red>"
-  mapart-protection:
-    denied: "<red>You cannot use a map inside of this plot!</red>"
+prefix: "<gray>[<aqua>AdminTools</aqua>]</gray> "
+main-command:
+  reloaded: "{prefix}<color:#F0E68C>AdminTools Config Reloaded</color>"
+  usage: |-
+    "{prefix}<color:#F0E68C>Usage:"
+    "{prefix}<aqua>/admintools reload"
+world-manager:
+  usage: |-
+    {prefix}<green>WorldManager Usage:</green>
+    {prefix}<color:#F0E68C>/worldmanager delete [managedWorld]</color>
+    {prefix}<color:#F0E68C>/worldmanager create [managedWorld]</color>
+  exists: "<red>World {world} already exists! Skipping...</red>"
+  created: "<green>World {world} has been created</green>"
+  evacuation: "<gold>This world is resetting. You have been teleported to an evacuation location.</gold>"
+  confirm: "<red>Type this command again to confirm deletion of {world}.</red>"
+  null: "<red>World {world} is null! Skipping...</red>"
+  deleted: "<green>World {world} has been deleted.</green>"
+mending-prevention:
+  denied: "<red>You cannot apply mending to custom items!</red>"
+
+# DO NOT TOUCH THIS VALUE!!!
+config-version: 1
