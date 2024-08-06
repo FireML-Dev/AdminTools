@@ -8,6 +8,10 @@
 # IntelliJ
 out/
 
+# Gradle
+.gradle/
+build/
+
 # Compiled class file
 *.class
 
@@ -19,7 +23,6 @@ out/
 
 # Package Files #
 *.jar
-!libs/*.jar
 *.war
 *.nar
 *.ear
