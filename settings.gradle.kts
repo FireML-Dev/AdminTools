@@ -13,7 +13,7 @@ dependencyResolutionManagement {
             library("cmilib", "CMILib:CMILib:1.4.7.16")
 
             plugin("plugin-yml", "net.minecrell.plugin-yml.paper").version("0.6.0")
-            plugin("shadow", "io.github.goooler.shadow").version("8.1.8")
+            plugin("shadow", "com.gradleup.shadow").version("8.3.0")
         }
     }
 }
