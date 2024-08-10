@@ -3,7 +3,7 @@ rootProject.name = "AdminTools"
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
-            library("paper-api", "io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT")
+            library("paper-api", "io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
             library("daisylib", "uk.firedev:DaisyLib:2.0.3-SNAPSHOT")
             library("cmi-api", "CMI-API:CMI-API:9.7.0.1")
             library("evenmorefish", "com.oheers:EvenMoreFish:1.7")
