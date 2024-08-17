@@ -78,7 +78,7 @@ public class MessageConfig extends uk.firedev.daisylib.Config {
     }
 
     public ComponentMessage getWorldManagerNullWorldMessage() {
-        return new ComponentMessage(getConfig(), "world-manager.null", "<red>World {world} is null! Skipping...</red>")
+        return new ComponentMessage(getConfig(), "world-manager.null-world", "<red>World {world} is null! Skipping...</red>")
                 .applyReplacer(getPrefixReplacer());
     }
 
