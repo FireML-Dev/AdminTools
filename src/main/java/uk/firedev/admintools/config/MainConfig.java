@@ -29,6 +29,8 @@ public class MainConfig extends uk.firedev.daisylib.Config {
         return getConfig().getBoolean("hooks.denizen.evenmorefish");
     }
 
+    public boolean isDenizenCarbonChatHook() { return getConfig().getBoolean("hooks.denizen.carbonchat"); }
+
     /// Jobs Reborn
 
     // Place Break Patch
