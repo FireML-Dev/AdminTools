@@ -12,9 +12,6 @@ hooks:
     # Enable the EvenMoreFish hook?
     # https://www.spigotmc.org/resources/evenmorefish-%E2%96%AA-extensive-fishing-plugin-%E2%96%AA.91310/
     evenmorefish: true
-    # Enable the CarbonChat hook?
-    # https://hangar.papermc.io/Vicarious/Carbon
-    carbonchat: true
 
 # DO NOT TOUCH THIS VALUE!!!
 config-version: 2

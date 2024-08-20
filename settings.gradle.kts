@@ -11,7 +11,6 @@ dependencyResolutionManagement {
             library("multiverse", "com.onarandombox.multiversecore:multiverse-core:4.3.12")
             library("jobs", "Jobs:jobs:5.2.3.1")
             library("cmilib", "CMILib:CMILib:1.4.7.16")
-            library("carbonchat", "de.hexaoxi:carbonchat-api:3.0.0-beta.27")
 
             plugin("plugin-yml", "net.minecrell.plugin-yml.paper").version("0.6.0")
             plugin("shadow", "com.gradleup.shadow").version("8.3.0")

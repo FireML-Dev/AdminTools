@@ -26,7 +26,6 @@ dependencies {
     compileOnly(files("$projectDir/libs/Jobs5.2.3.1.jar"))
     compileOnly(files("$projectDir/libs/CMILib1.4.7.16.jar"))
     compileOnly(libs.daisylib)
-    compileOnly(libs.carbonchat)
 }
 
 group = "uk.firedev"

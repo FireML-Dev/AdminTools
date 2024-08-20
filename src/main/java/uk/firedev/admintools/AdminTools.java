@@ -42,9 +42,7 @@ public class AdminTools extends JavaPlugin {
 
     private void loadHooks() {
         PluginManager pm = this.getServer().getPluginManager();
-        if (pm.isPluginEnabled("Denizen")) {
-            DenizenIntegration.setup();
-        }
+        DenizenIntegration.setup();
         if (pm.isPluginEnabled("Multiverse-Core")) {
             mvCore = (MultiverseCore) pm.getPlugin("Multiverse-Core");
             WorldManagerConfig.getInstance().reload();

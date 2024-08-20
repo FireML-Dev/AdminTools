@@ -4,7 +4,6 @@ import com.denizenscript.denizencore.events.ScriptEvent;
 import org.bukkit.plugin.PluginManager;
 import uk.firedev.admintools.AdminTools;
 import uk.firedev.admintools.config.MainConfig;
-import uk.firedev.admintools.denizen.carbonchat.events.CarbonPlayerChatsScriptEvent;
 import uk.firedev.admintools.denizen.daisylib.events.DaisyLibReloadScriptEvent;
 import uk.firedev.admintools.denizen.daisylib.events.PlayerMoveBlockScriptEvent;
 import uk.firedev.admintools.denizen.daisylib.events.PlayerMoveChunkScriptEvent;
@@ -38,10 +37,6 @@ public class DenizenIntegration {
                 ScriptEvent.registerScriptEvent(new EMFCompetitionEndScriptEvent());
                 EMFItemExtensions.register();
                 Loggers.info(AdminTools.getInstance().getComponentLogger(), "Loaded bridge for 'EvenMoreFish'!");
-            }
-            if (MainConfig.getInstance().isDenizenCarbonChatHook() && pm.isPluginEnabled("CarbonChat")) {
-                ScriptEvent.registerScriptEvent(new CarbonPlayerChatsScriptEvent());
-                Loggers.info(AdminTools.getInstance().getComponentLogger(), "Loaded bridge for 'CarbonChat'!");
             }
         }
     }

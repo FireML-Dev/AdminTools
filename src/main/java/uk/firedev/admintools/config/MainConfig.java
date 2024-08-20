@@ -29,10 +29,6 @@ public class MainConfig extends uk.firedev.daisylib.Config {
         return getConfig().getBoolean("hooks.denizen.evenmorefish");
     }
 
-    public boolean isDenizenCarbonChatHook() { return getConfig().getBoolean("hooks.denizen.carbonchat"); }
-
-    /// Jobs Reborn
-
     // Place Break Patch
     public boolean isJobsPlaceBreakEnabled() {
         return getConfig().getBoolean("hooks.jobs.place-break.enable-patch");
