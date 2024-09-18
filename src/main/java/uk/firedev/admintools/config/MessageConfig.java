@@ -28,11 +28,11 @@ public class MessageConfig extends uk.firedev.daisylib.Config {
     // GENERAL MESSAGES
 
     public ComponentMessage getPrefix() {
-        return new ComponentMessage(getConfig(), "prefix", "<gray>[<aqua>AdminTools</aqua>]</gray> ");
+        return ComponentMessage.fromConfig(getConfig(), "prefix", "<gray>[<aqua>AdminTools</aqua>]</gray> ");
     }
 
     public ComponentMessage getMainCommandReloadedMessage() {
-        return new ComponentMessage(getConfig(), "main-command.reloaded", "{prefix}<color:#F0E68C>AdminTools Config Reloaded</color>")
+        return ComponentMessage.fromConfig(getConfig(), "main-command.reloaded", "{prefix}<color:#F0E68C>AdminTools Config Reloaded</color>")
                 .applyReplacer(getPrefixReplacer());
     }
 
@@ -41,7 +41,7 @@ public class MessageConfig extends uk.firedev.daisylib.Config {
                 "{prefix}<color:#F0E68C>Usage:",
                 "{prefix}<aqua>/admintools reload"
         ));
-        return new ComponentMessage(getConfig(), "main-command.usage", def)
+        return ComponentMessage.fromConfig(getConfig(), "main-command.usage", def)
                 .applyReplacer(getPrefixReplacer());
     }
 
@@ -53,44 +53,44 @@ public class MessageConfig extends uk.firedev.daisylib.Config {
                 "{prefix}<color:#F0E68C>/worldmanager delete [managedWorld]</color>",
                 "{prefix}<color:#F0E68C>/worldmanager create [managedWorld]</color>"
         ));
-        return new ComponentMessage(getConfig(), "world-manager.usage", def)
+        return ComponentMessage.fromConfig(getConfig(), "world-manager.usage", def)
                 .applyReplacer(getPrefixReplacer());
     }
 
     public ComponentMessage getWorldManagerExistsMessage() {
-        return new ComponentMessage(getConfig(), "world-manager.exists", "<red>World {world} already exists! Skipping...</red>")
+        return ComponentMessage.fromConfig(getConfig(), "world-manager.exists", "<red>World {world} already exists! Skipping...</red>")
                 .applyReplacer(getPrefixReplacer());
     }
 
     public ComponentMessage getWorldManagerCreatedMessage() {
-        return new ComponentMessage(getConfig(), "world-manager.created", "<green>World {world} has been created</green>")
+        return ComponentMessage.fromConfig(getConfig(), "world-manager.created", "<green>World {world} has been created</green>")
                 .applyReplacer(getPrefixReplacer());
     }
 
     public ComponentMessage getWorldManagerEvacuationMessage() {
-        return new ComponentMessage(getConfig(), "world-manager.evacuation", "<gold>This world is resetting. You have been teleported to an evacuation location.</gold>")
+        return ComponentMessage.fromConfig(getConfig(), "world-manager.evacuation", "<gold>This world is resetting. You have been teleported to an evacuation location.</gold>")
                 .applyReplacer(getPrefixReplacer());
     }
 
     public ComponentMessage getWorldManagerConfirmMessage() {
-        return new ComponentMessage(getConfig(), "world-manager.confirm", "<red>Type this command again to confirm deletion of {world}.</red>")
+        return ComponentMessage.fromConfig(getConfig(), "world-manager.confirm", "<red>Type this command again to confirm deletion of {world}.</red>")
                 .applyReplacer(getPrefixReplacer());
     }
 
     public ComponentMessage getWorldManagerNullWorldMessage() {
-        return new ComponentMessage(getConfig(), "world-manager.null-world", "<red>World {world} is null! Skipping...</red>")
+        return ComponentMessage.fromConfig(getConfig(), "world-manager.null-world", "<red>World {world} is null! Skipping...</red>")
                 .applyReplacer(getPrefixReplacer());
     }
 
     public ComponentMessage getWorldManagerDeletedMessage() {
-        return new ComponentMessage(getConfig(), "world-manager.deleted", "<green>World {world} has been deleted.</green>")
+        return ComponentMessage.fromConfig(getConfig(), "world-manager.deleted", "<green>World {world} has been deleted.</green>")
                 .applyReplacer(getPrefixReplacer());
     }
 
     // MENDING PREVENTION MESSAGES
 
     public ComponentMessage getMendingPreventionDeniedMessage() {
-        return new ComponentMessage(getConfig(), "mending-prevention.denied", "<red>You cannot apply mending to custom items!</red>")
+        return ComponentMessage.fromConfig(getConfig(), "mending-prevention.denied", "<red>You cannot apply mending to custom items!</red>")
                 .applyReplacer(getPrefixReplacer());
    }
 

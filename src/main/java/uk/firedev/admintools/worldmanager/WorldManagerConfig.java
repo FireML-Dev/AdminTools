@@ -87,7 +87,7 @@ public class WorldManagerConfig extends Config {
     }
 
     public @NotNull ComponentMessage getEvacKickMessage() {
-        return new ComponentMessage(getConfig(), "evacuation.kick-message", "<aqua>Unable to find a safe evacuation point. You have been removed from the server.");
+        return ComponentMessage.fromConfig(getConfig(), "evacuation.kick-message", "<aqua>Unable to find a safe evacuation point. You have been removed from the server.");
     }
 
 }

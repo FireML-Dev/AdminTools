@@ -33,7 +33,7 @@ public class DisablePluginCommand extends CommandAPICommand {
             Plugin pl = pm.getPlugin(args[0]);
             if (pm.isPluginEnabled(pl)) {
                 pm.disablePlugin(pl);
-                new ComponentMessage("<red>Disabled " + pl.getName() + "</red>").sendMessage(sender);
+                ComponentMessage.fromString("<red>Disabled " + pl.getName() + "</red>").sendMessage(sender);
             }
         });
     }
