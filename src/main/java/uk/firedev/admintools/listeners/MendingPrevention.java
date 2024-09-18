@@ -8,6 +8,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerItemMendEvent;
 import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.ItemStack;
+import uk.firedev.admintools.Utils;
 import uk.firedev.admintools.config.MainConfig;
 import uk.firedev.admintools.config.MessageConfig;
 import uk.firedev.daisylib.utils.ItemUtils;
@@ -26,7 +27,7 @@ public class MendingPrevention implements Listener {
         if (result == null || e.getSlot() != 2 || !result.containsEnchantment(Enchantment.MENDING)) {
             return;
         }
-        if (ItemUtils.isCustomItem(result)) {
+        if (Utils.isCustomItem(result)) {
             e.setCancelled(true);
             MessageConfig.getInstance().getMendingPreventionDeniedMessage().sendMessage(p);
         }
@@ -37,7 +38,7 @@ public class MendingPrevention implements Listener {
         if (!MainConfig.getInstance().isPreventCustomItemMending()) {
             return;
         }
-        if (ItemUtils.isCustomItem(e.getItem())) {
+        if (Utils.isCustomItem(e.getItem())) {
             e.setCancelled(true);
         }
     }

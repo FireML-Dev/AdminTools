@@ -4,6 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.FurnaceBurnEvent;
 import org.bukkit.event.inventory.FurnaceSmeltEvent;
+import uk.firedev.admintools.Utils;
 import uk.firedev.admintools.config.MainConfig;
 import uk.firedev.daisylib.utils.ItemUtils;
 
@@ -14,7 +15,7 @@ public class CustomItemProtection implements Listener {
         if (!MainConfig.getInstance().isPreventCustomItemFurnaceFuel()) {
             return;
         }
-        if (ItemUtils.isCustomItem(e.getFuel())) {
+        if (Utils.isCustomItem(e.getFuel())) {
             e.setCancelled(true);
         }
     }
@@ -24,7 +25,7 @@ public class CustomItemProtection implements Listener {
         if (!MainConfig.getInstance().isPreventCustomItemFurnaceFuel()) {
             return;
         }
-        if (ItemUtils.isCustomItem(e.getSource()) && !ItemUtils.isCustomItem(e.getResult())) {
+        if (Utils.isCustomItem(e.getSource()) && !Utils.isCustomItem(e.getResult())) {
             e.setCancelled(true);
         }
     }
