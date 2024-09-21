@@ -40,7 +40,6 @@ public class EMFJobsEXPEquationRewardType implements com.oheers.fish.api.reward.
                 getPlugin().getLogger().warning("Invalid equation specified for EvenMoreFish RewardType " + getIdentifier() + ": " + parsedValue[1]);
                 return;
             }
-            System.out.println(equation.getValue());
             prog.addExperience(equation.getValue());
             jobsPlayer.setSaved(false);
         }

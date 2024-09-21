@@ -49,7 +49,6 @@ public class WorldManagerConfig extends Config {
                 loadedManagedWorlds.put(managedWorld.getName(), managedWorld);
             }
         });
-        System.out.println("Loaded ManagedWorlds: " + getLoadedManagedWorlds().keySet());
     }
 
     public Map<String, ManagedWorld> getLoadedManagedWorlds() {

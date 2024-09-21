@@ -26,7 +26,6 @@ public class EMFJobsEXPRewardType implements com.oheers.fish.api.reward.RewardTy
             getPlugin().getLogger().warning("Invalid job specified for EvenMoreFish RewardType " + getIdentifier() + ": " + parsedValue[0]);
             return;
         }
-        System.out.println(jobsPlayer.isInJob(job));
         if (!jobsPlayer.isInJob(job)) {
             return;
         }

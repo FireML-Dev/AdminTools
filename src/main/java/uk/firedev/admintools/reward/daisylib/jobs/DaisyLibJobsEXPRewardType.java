@@ -25,7 +25,6 @@ public class DaisyLibJobsEXPRewardType implements uk.firedev.daisylib.reward.Rew
             getPlugin().getLogger().warning("Invalid job specified for EvenMoreFish RewardType " + getIdentifier() + ": " + parsedValue[0]);
             return;
         }
-        System.out.println(jobsPlayer.isInJob(job));
         if (!jobsPlayer.isInJob(job)) {
             return;
         }
