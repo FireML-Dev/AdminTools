@@ -20,7 +20,7 @@ repositories {
 dependencies {
     compileOnly(libs.paper.api)
     compileOnly(libs.cmi.api)
-    compileOnly(files("$projectDir/libs/even-more-fish-1.7.jar"))
+    compileOnly(libs.evenmorefish)
     compileOnly(libs.denizen.api)
     compileOnly(libs.multiverse)
     compileOnly(files("$projectDir/libs/Jobs5.2.3.1.jar"))

@@ -6,7 +6,7 @@ dependencyResolutionManagement {
             library("paper-api", "io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
             library("daisylib", "uk.firedev:DaisyLib:2.0.3-SNAPSHOT")
             library("cmi-api", "CMI-API:CMI-API:9.7.0.1")
-            library("evenmorefish", "com.oheers:EvenMoreFish:1.7")
+            library("evenmorefish", "com.oheers.evenmorefish:even-more-fish-plugin:1.7.4")
             library("denizen-api", "com.denizenscript:denizen:1.3.1-SNAPSHOT")
             library("multiverse", "com.onarandombox.multiversecore:multiverse-core:4.3.12")
             library("jobs", "Jobs:jobs:5.2.3.1")

@@ -1,6 +1,7 @@
 package uk.firedev.admintools.denizen;
 
 import com.denizenscript.denizencore.events.ScriptEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import uk.firedev.admintools.AdminTools;
 import uk.firedev.admintools.config.MainConfig;
@@ -18,26 +19,24 @@ import uk.firedev.daisylib.Loggers;
 public class DenizenIntegration {
 
     public static void setup() {
-        PluginManager pm = AdminTools.getInstance().getServer().getPluginManager();
-        if (pm.isPluginEnabled("Denizen")) {
-            // DaisyLib
-            if (MainConfig.getInstance().isDenizenDaisyLibHook()) {
-                DaisyLibLocationExtensions.register();
-                ScriptEvent.registerScriptEvent(new DaisyLibReloadScriptEvent());
-                ScriptEvent.registerScriptEvent(new PlayerMoveBlockScriptEvent());
-                ScriptEvent.registerScriptEvent(new PlayerMoveChunkScriptEvent());
-                Loggers.info(AdminTools.getInstance().getComponentLogger(), "Loaded bridge for 'DaisyLib'!");
-            }
+        PluginManager pm = Bukkit.getPluginManager();
+        // DaisyLib
+        if (MainConfig.getInstance().isDenizenDaisyLibHook()) {
+            DaisyLibLocationExtensions.register();
+            ScriptEvent.registerScriptEvent(new DaisyLibReloadScriptEvent());
+            ScriptEvent.registerScriptEvent(new PlayerMoveBlockScriptEvent());
+            ScriptEvent.registerScriptEvent(new PlayerMoveChunkScriptEvent());
+            Loggers.info(AdminTools.getInstance().getComponentLogger(), "Loaded bridge for 'DaisyLib'!");
+        }
 
-            // Other plugins
-            if (MainConfig.getInstance().isDenizenEMFHook() && pm.isPluginEnabled("EvenMoreFish")) {
-                ScriptEvent.registerScriptEvent(new EMFFishCaughtScriptEvent());
-                ScriptEvent.registerScriptEvent(new EMFRewardScriptEvent());
-                ScriptEvent.registerScriptEvent(new EMFCompetitionStartScriptEvent());
-                ScriptEvent.registerScriptEvent(new EMFCompetitionEndScriptEvent());
-                EMFItemExtensions.register();
-                Loggers.info(AdminTools.getInstance().getComponentLogger(), "Loaded bridge for 'EvenMoreFish'!");
-            }
+        // Other plugins
+        if (MainConfig.getInstance().isDenizenEMFHook() && pm.isPluginEnabled("EvenMoreFish")) {
+            ScriptEvent.registerScriptEvent(new EMFFishCaughtScriptEvent());
+            ScriptEvent.registerScriptEvent(new EMFRewardScriptEvent());
+            ScriptEvent.registerScriptEvent(new EMFCompetitionStartScriptEvent());
+            ScriptEvent.registerScriptEvent(new EMFCompetitionEndScriptEvent());
+            EMFItemExtensions.register();
+            Loggers.info(AdminTools.getInstance().getComponentLogger(), "Loaded bridge for 'EvenMoreFish'!");
         }
     }
 
